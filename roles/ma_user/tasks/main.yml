@@ -60,7 +60,7 @@
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.wallpapers }}"
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.workspace }}"
     # systemd user service directory
-    - "{{ ma_user.dirs.config }}/systemd/user"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/systemd/user"
   tags:
     - user
     - directory
