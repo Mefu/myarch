@@ -8,15 +8,12 @@
   become: yes
   become_user: root
   become_method: sudo
-  apt:
+  pacman:
     name: "{{ item }}"
     state: latest
-    update_cache: yes
-    cache_valid_time: '{{ 12*60*60|int }}'
   with_items:
     - bspwm
     - sxhkd
-    - dbus-user-session
   tags:
     - wm
     - package
