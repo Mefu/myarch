@@ -29,7 +29,7 @@
     name: "{{ item }}"
     skip_installed: true
   with_items:
-    - polybar
+    - polybar-git
   tags:
     - bar
     - package
