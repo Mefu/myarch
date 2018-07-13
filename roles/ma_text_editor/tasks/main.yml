@@ -28,7 +28,7 @@
   become_method: sudo
   git:
     repo: https://github.com/syl20bnr/spacemacs
-    dest: "{{ ma_user.dirs.home }}"/.emacs.d
+    dest: "{{ ma_user.dirs.home }}/.emacs.d"
   tags:
     - text_editor
     - config
