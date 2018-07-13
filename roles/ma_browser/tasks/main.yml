@@ -4,31 +4,26 @@
 # Installation
 #
 ################################################################################################
-- name: Install required packages for emacs.
+- name: Install required packages for firefox.
   become: yes
   become_user: root
   become_method: sudo
-  apt:
+  pacman:
     name: "{{ item }}"
     state: latest
   with_items:
-    - emacs
+    - firefox
   tags:
-    - text_editor
+    - browser
     - package
+
 
 ################################################################################################
 #
 # Configuration
 #
 ################################################################################################
-- name: Install spacemacs.
-  become: yes
-  become_user: "{{ ma_user.name }}"
-  become_method: sudo
-  git:
-    repo: https://github.com/syl20bnr/spacemacs
-    dest: "{{ ma_user.dirs.home }}"/.emacs.d
-  tags:
-    - text_editor
-    - config
+
+# I think it would too complex to configure firefox with files and stuff only
+# You usually login to your account to get your settings synchronized etc.
+# I do not think I can login and trigger sync using command line (?)
