@@ -1,0 +1,17 @@
+---
+####################################################################################################
+#
+# Handlers
+#
+####################################################################################################
+- name: update fisher packages
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  shell: fundle install
+  args:
+    executable: /usr/bin/fish
+  tags:
+    - shell
+    - config
+    - fundle

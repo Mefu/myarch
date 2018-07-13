@@ -23,3 +23,10 @@ ma_user:
     screenshots: "imgs/ss"
     wallpapers: "img/wps"
     workspace: "workspace"
+
+ma_shell:
+  fish:
+    packages:
+      - tuvistavie/fish-completion-helpers
+      - tuvistavie/oh-my-fish-core
+      - oh-my-fish/fishbone

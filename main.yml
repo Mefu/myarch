@@ -10,7 +10,7 @@
     # create normal user
     - ma_user
     - ma_font
-    # - ma_shell
+    - ma_shell
     # - ma_audio
     # - ma_network
     # - ma_dm

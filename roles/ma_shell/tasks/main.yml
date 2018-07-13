@@ -1,0 +1,65 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install fish package.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - fish
+  tags:
+    - font
+    - package
+
+####################################################################################################
+#
+# Configuration
+#
+####################################################################################################
+- name: Create fish functions directory
+  file: path="{{ item }}" state=directory
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  with_items:
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/functions"
+  tags:
+    - shell
+    - config
+
+# this is straight pulling stuff from web without verification
+# @TODO: find a better way for this
+- name: add fundle for fish plugin management
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  get_url:
+    url: https://git.io/fundle
+    dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/functions/fundle.fish"
+  tags:
+    - shell
+    - config
+    - fundle
+
+- name: Copy fish config files.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: config.fish
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/config.fish"
+  notify:
+    - update fisher packages
+  tags:
+    - shell
+    - config
+    - fundle
