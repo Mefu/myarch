@@ -1,0 +1,18 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for virt-what.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  aur:
+    name: "{{ item }}"
+    skip_installed: true
+  with_items:
+    - virt-what
+  tags:
+    - vbox_guest
+    - package
