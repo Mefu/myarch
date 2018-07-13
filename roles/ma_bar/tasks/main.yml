@@ -4,13 +4,13 @@
 # Installation
 #
 ####################################################################################################
-- name: Install required packages for polybar.
+- name: Install dependency packages for polybar.
   become: yes
   become_user: "{{ ma_user.name }}"
   become_method: sudo
-  aur:
+  pacman:
     name: "{{ item }}"
-    skip_installed: true
+    state: latest
   with_items:
     # github module support
     - curl
