@@ -37,11 +37,13 @@
 # @TODO: find a better way for this
 - name: add fundle for fish plugin management
   become: yes
-  become_user: "{{ ma_user.name }}"
+  become_user: root
   become_method: sudo
   get_url:
     url: https://git.io/fundle
     dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/functions/fundle.fish"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
   tags:
     - shell
     - config
