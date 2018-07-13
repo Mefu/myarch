@@ -1,0 +1,28 @@
+---
+################################################################################################
+#
+# Installation of dunst
+#
+################################################################################################
+- name: Install required packages for dunst.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - dunst
+  tags:
+    - notification
+    - package
+
+
+################################################################################################
+#
+# Configuration
+#
+################################################################################################
+
+# I do not even know how much I can customize dunst, it appears to be getting its colors from
+# Xresources default file. If you know, do your stuff here.

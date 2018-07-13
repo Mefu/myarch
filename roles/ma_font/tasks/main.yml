@@ -4,7 +4,7 @@
 # Installation
 #
 ####################################################################################################
-- name: Install font packages.
+- name: Install required packages for fonts.
   become: yes
   become_user: root
   become_method: sudo

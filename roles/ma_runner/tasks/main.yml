@@ -1,0 +1,28 @@
+---
+################################################################################################
+#
+# Installation of rofi
+#
+################################################################################################s
+- name: Install required packages for rofi.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - rofi
+  tags:
+    - runner
+    - package
+
+
+################################################################################################
+#
+# Configuration
+#
+################################################################################################
+
+# Again I am lazy so I did not attempt to configure rofi, but people are doing amazing stuff
+# with it. For shortcuts, check md_wm/files/sxhkdrc

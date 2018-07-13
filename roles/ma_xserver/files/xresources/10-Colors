@@ -1,0 +1,40 @@
+!-------------------------------------------------------------------------------
+! Define colors
+!-------------------------------------------------------------------------------
+#define black_dark          #263238
+#define black_light         #37474f
+#define red_dark            #ff9800
+#define red_light           #ffa74d
+#define green_dark          #8bc34a
+#define green_light         #9ccc65
+#define yellow_dark         #ffc107
+#define yellow_light        #ffa000
+#define blue_dark           #03a9f4
+#define blue_light          #81d4fa
+#define magenta_dark        #e91e63
+#define magenta_light       #ad1457
+#define cyan_dark           #009688
+#define cyan_light          #26a69a
+#define white_dark          #cfd8dc
+#define white_light         #eceff1
+
+background:                 black_dark
+foreground:                 white_light
+
+color0:                     black_dark
+color1:                     red_dark
+color2:                     green_dark
+color3:                     yellow_dark
+color4:                     blue_dark
+color5:                     magenta_dark
+color6:                     cyan_dark
+color7:                     white_dark
+color8:                     black_light
+color9:                     red_light
+color10:                    green_light
+color11:                    yellow_light
+color12:                    blue_light
+color13:                    magenta_light
+color14:                    cyan_light
+color15:                    white_light
+

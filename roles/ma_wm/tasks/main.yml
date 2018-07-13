@@ -4,17 +4,21 @@
 # Installation
 #
 ####################################################################################################
-- name: Install required packages for fish.
+- name: Install required packages for bspwm.
   become: yes
   become_user: root
   become_method: sudo
-  pacman:
+  apt:
     name: "{{ item }}"
     state: latest
+    update_cache: yes
+    cache_valid_time: '{{ 12*60*60|int }}'
   with_items:
-    - fish
+    - bspwm
+    - sxhkd
+    - dbus-user-session
   tags:
-    - font
+    - wm
     - package
 
 ####################################################################################################
@@ -22,46 +26,32 @@
 # Configuration
 #
 ####################################################################################################
-- name: Create fish functions directory
+- name: Create required directory for bspwm and sxkhd config
   file: path="{{ item }}" state=directory
   become: yes
   become_user: "{{ ma_user.name }}"
   become_method: sudo
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/functions"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/bspwm"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd"
   tags:
-    - shell
+    - wm
     - config
+    - directory
 
-# this is straight pulling stuff from web without verification
-# @TODO: find a better way for this
-- name: add fundle for fish plugin management
-  become: yes
-  become_user: root
-  become_method: sudo
-  get_url:
-    url: https://git.io/fundle
-    dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/functions/fundle.fish"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
-  tags:
-    - shell
-    - config
-    - fundle
-
-- name: Copy fish config files.
+- name: Copy bspwmrc and sxkhdrc config files.
   become: yes
   become_user: "{{ ma_user.name }}"
   become_method: sudo
-  template:
+  copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    mode: 0755
   with_items:
-    - src: config.fish
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/config.fish"
-  notify:
-    - update fisher packages
+    - src: bspwmrc
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/bspwm/bspwmrc"
+    - src: sxhkdrc
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc"
   tags:
-    - shell
+    - wm
     - config
-    - fundle

@@ -1,0 +1,47 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for sddm.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    # display manager to start at boot
+    - sddm
+  tags:
+    - dm
+    - package
+
+####################################################################################################
+#
+# Configuration
+#
+####################################################################################################
+
+# I am just using default look and config atm because I am lazy
+# Try to configure it here if you want to customize
+# also todo for me
+# @TODO try to pull themeing stuff to its own role somehow
+
+
+####################################################################################################
+#
+# Enable sddm
+#
+####################################################################################################
+- name: Enable sddm.
+  become: yes
+  become_user: root
+  become_method: sudo
+  systemd:
+    name: sddm
+    enabled: yes
+  tags:
+    - dm
+    - service

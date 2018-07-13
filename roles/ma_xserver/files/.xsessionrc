@@ -1,0 +1,15 @@
+# set x cursor to left ptr instead of a big X
+xsetroot -cursor_name left_ptr
+
+# load ~/.Xresources file
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+# set DISPLAY and AUTHORITY for systemd user services to see
+systemctl --user import-environment DISPLAY XAUTHORITY PATH XDG_RUNTIME_DIR
+
+if which dbus-update-activation-environment >/dev/null 2>&1; then
+  dbus-update-activation-environment DISPLAY XAUTHORITY PATH XDG_RUNTIME_DIR
+fi
+
+# set sxhkd shell to sh
+export SXHKD_SHELL="/usr/bin/bash"

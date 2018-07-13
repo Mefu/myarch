@@ -1,0 +1,73 @@
+!-------------------------------------------------------------------------------
+! URxvt settings
+! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
+! More info at:
+! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
+!-------------------------------------------------------------------------------
+
+URxvt.depth:                          32
+URxvt.geometry:                       90x30
+URxvt.transparent:                    false
+URxvt.fading:                         0
+URxvt.loginShell:                     true
+URxvt.saveLines:                      1000
+URxvt.internalBorder:                 3
+URxvt.lineSpace:                      0
+
+! font
+URxvt*font:                           xft:Inconsolata:pixelsize=11:style=Regular
+URxvt*boldFont:                       xft:Inconsolata:pixelsize=11:style=Bold
+
+! Fix font space
+URxvt*letterSpace:                    -1
+
+! Scrollbar
+URxvt.scrollStyle:                    rxvt
+URxvt.scrollBar:                      false
+
+! Cursor
+URxvt.cursorBlink:                    true
+URxvt*cursorColor:                    white_light
+URxvt.cursorUnderline:                false
+
+! Pointer
+URxvt.pointerBlank:                   false
+URxvt*pointerColorBackground:         white_light
+URxvt*pointerColorForeground:         black_dark
+
+!! special
+URxvt*background:                     black_dark
+URxvt*foreground:                     white_light
+URxvt*fadeColor:                      black_light
+
+!! black dark/light
+URxvt*color0:                         black_dark
+URxvt*color8:                         black_light
+
+!! red dark/light
+URxvt*color1:                         red_dark
+URxvt*color9:                         red_light
+
+!! green dark/light
+URxvt*color2:                         green_dark
+URxvt*color10:                        green_light
+
+!! yellow dark/light
+URxvt*color3:                         yellow_dark
+URxvt*color11:                        yellow_light
+
+!! blue dark/light
+URxvt*color4:                         blue_dark
+URxvt*color12:                        blue_light
+
+!! magenta dark/light
+URxvt*color5:                         magenta_dark
+URxvt*color13:                        magenta_light
+
+!! cyan dark/light
+URxvt*color6:                         cyan_dark
+URxvt*color14:                        cyan_light
+
+!! white dark/light
+URxvt*color7:                         white_dark
+URxvt*color15:                        white_light

@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+####################################################################################################
+#
+# porting from defaultish i3
+#
+####################################################################################################
+
+####################################################################################################
+#
+# bspc commands
+#
+####################################################################################################
+
+# kill focused window
+super + shift + {w,q}
+  bspc node -{c,k}
+
+# change focus
+super + {Left,Down,Up,Right}
+  bspc node -f {west,south,north,east}
+
+# move selected node
+super + shift + {Left,Down,Up,Right}
+  bspc node -s {west,south,north,east}
+
+# preselect the direction to split
+super + {h,j,k,l,c}
+  bspc node -p {west,south,north,east,cancel}
+
+# window state fullscreen
+super + f
+  bspc node -t ~fullscreen
+
+# try to find a tabbed layout setting
+
+# toggle tiled
+super + t
+  bspc node -t ~tiled
+
+# toggle floating
+super + g
+  bspc node -t ~floating
+
+# focus a desktop
+super + {1-9,0}
+  bspc desktop -f '^{1-9,10}'
+
+# send to the given desktop
+super + control + {1-9,0}
+  bspc node -d '^{1-9,10}'
+
+# send current desktop to another monitor and focus
+super + control + {Left,Right}
+  bspc desktop -m {west,east} -f
+
+# make sxhkd reload its configuration files:
+super + shift + r
+  pkill -USR1 -x sxhkd
+
+# quit bspwm normally
+super + shift + e
+  bspc quit
+
+####################################################################################################
+#
+# Program launchers
+#
+####################################################################################################
+
+# terminal emulators
+
+# default behavior is starting with fish
+super + Return
+  env SHELL=/usr/bin/fish urxvt
+
+# for instances where bash is required
+super + shift + Return
+  urxvt
+
+# program launcher
+super + d
+  exec rofi -show run -font 'Noto Sans 11'
+
+# window switcher
+super + Tab
+  exec rofi -show window -font 'Noto Sans 11'
+
+####################################################################################################
+#
+# Controls
+#
+####################################################################################################
+
+# backlight
+# audio
+# music player
+# screenshot
+# screencast

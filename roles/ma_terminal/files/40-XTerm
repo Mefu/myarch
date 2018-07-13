@@ -1,0 +1,46 @@
+!-------------------------------------------------------------------------------
+! XTerm settings
+!-------------------------------------------------------------------------------
+
+!! font
+xterm*faceName: Inconsolata:size=11:style=Regular
+
+!! special
+xterm*background:                   black_dark
+xterm*foreground:                   white_light
+xterm*fadeColor:                    black_light
+xterm*cursorColor:                  black_dark
+xterm*pointerColorBackground:       white_light
+xterm*pointerColorForeground:       black_dark
+
+!! black dark/light
+xterm*color0:                       black_dark
+xterm*color8:                       black_light
+
+!! red dark/light
+xterm*color1:                       red_dark
+xterm*color9:                       red_light
+
+!! green dark/light
+xterm*color2:                       green_dark
+xterm*color10:                      green_light
+
+!! yellow dark/light
+xterm*color3:                       yellow_dark
+xterm*color11:                      yellow_light
+
+!! blue dark/light
+xterm*color4:                       blue_dark
+xterm*color12:                      blue_light
+
+!! magenta dark/light
+xterm*color5:                       magenta_dark
+xterm*color13:                      magenta_light
+
+!! cyan dark/light
+xterm*color6:                       cyan_dark
+xterm*color14:                      cyan_light
+
+!! white dark/light
+xterm*color7:                       white_dark
+xterm*color15:                      white_light

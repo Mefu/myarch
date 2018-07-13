@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# set up workspaces
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+# others
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# autostart for graphical stuff
+
+# hot key daemon
+sxhkd &
+
+# polybar
+systemctl --user start polybar

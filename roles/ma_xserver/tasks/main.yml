@@ -1,0 +1,67 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for xorg.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - xorg-server
+    - xorg-apps
+  tags:
+    - xserver
+    - package
+
+####################################################################################################
+#
+# Configuration of xorg
+# I might have other roles that want to put stuff .Xresources file.
+# Other roles that want to modify Xresources file should drop their section
+# in .config/xresources folder, and notify "compile xresources" handler.
+# This also requires those roles to depend on xorg role.
+#
+####################################################################################################
+- name: Create required directories for xorg config.
+  file: path="{{ item }}" state=directory
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  with_items:
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources"
+  tags:
+    - xserver
+    - config
+    - directory
+
+- name: Copy required config files for xorg.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    # stuff here that I found to get working various things
+    # I forgot why those exist there.
+    - src: .xsessionrc
+      dest: "{{ ma_user.dirs.home }}/.xsessionrc"
+
+    # for customizing these stuff, just modify files
+    # it is too much boilerplate to handle with ansible vars
+    # @TODO try to pull themeing stuff to its own role somehow
+    - src: xresources/00-Defaults
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/00-Defaults"
+    - src: xresources/10-Colors
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/10-Colors"
+  notify:
+    - compile xresources
+  tags:
+    - xserver
+    - config
+

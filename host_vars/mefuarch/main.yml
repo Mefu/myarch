@@ -3,8 +3,9 @@ ma_user:
   name: mefu
   password: $6$cUwEauWK3pJ9IN$1LFeHOBHslJvg2idCFc3zisS0fKVrdputK/Imrq1xu.dScoYkSAipeMxuMB8KaE/YYnsGnnd/SVJDwMBL0Sg6/
   commands:
-    - /sbin/shutdown
-    - /sbin/reboot
+    - /usr/bin/shutdown
+    - /usr/bin/reboot
+    - /usr/bin/pacman
   dirs:
     home: "/home/mefu"
     config: ".config"

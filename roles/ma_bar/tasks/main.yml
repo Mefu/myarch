@@ -1,0 +1,67 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for polybar.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  aur:
+    name: "{{ item }}"
+    skip_installed: true
+  with_items:
+    - polybar
+  tags:
+    - bar
+    - package
+    - dependency
+
+####################################################################################################
+#
+# Configuration of polybar
+#
+####################################################################################################
+- name: Create config directory of polybar.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/polybar"
+  tags:
+    - bar
+    - config
+    - directory
+
+# Modify file directly if you want to customize polybar
+- name: Copy polybar config file.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: config
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/polybar/config"
+  tags:
+    - bar
+    - config
+
+- name: Copy polybar service file.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  with_items:
+    - src: polybar.service
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/systemd/user/polybar.service"
+  tags:
+    - bar
+    - config
+    - service
