@@ -1,0 +1,18 @@
+---
+####################################################################################################
+#
+# Handlers for xorg
+#
+####################################################################################################
+- name: compile xresources
+  become: yes
+  become_user: root
+  become_method: sudo
+  assemble:
+    src: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources"
+    dest: "{{ ma_user.dirs.home }}/.Xresources"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  tags:
+    - xserver
+    - config
