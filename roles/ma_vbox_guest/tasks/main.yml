@@ -1,19 +1,20 @@
----
-####################################################################################################
+
+################################################################################################
 #
 # Installation
 #
-####################################################################################################
-- name: Install required packages for virt-what.
+################################################################################################
+- name: Install required packages for virtualbox guest utils.
   become: yes
-  become_user: "{{ ma_user.name }}"
+  become_user: root
   become_method: sudo
-  aur:
+  pacman:
     name: "{{ item }}"
-    skip_installed: true
-    skip_pgp_check: true
+    state: latest
   with_items:
-    - virt-what
+    - virtualbox-guest-modules-arch
+    - virtualbox-guest-utils
+  when: "ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'virtualbox'"
   tags:
     - vbox_guest
     - package
