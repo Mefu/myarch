@@ -43,22 +43,22 @@
   become_method: sudo
   file: path="{{ item }}" state=directory
   with_items:
-    - "{{ ma_user.dirs.config }}"
-    - "{{ ma_user.dirs.bin }}"
-    - "{{ ma_user.dirs.lib }}"
-    - "{{ ma_user.dirs.share }}"
-    - "{{ ma_user.dirs.desktop }}"
-    - "{{ ma_user.dirs.download }}"
-    - "{{ ma_user.dirs.template }}"
-    - "{{ ma_user.dirs.public }}"
-    - "{{ ma_user.dirs.document }}"
-    - "{{ ma_user.dirs.music }}"
-    - "{{ ma_user.dirs.picture }}"
-    - "{{ ma_user.dirs.video }}"
-    - "{{ ma_user.dirs.image }}"
-    - "{{ ma_user.dirs.screenshot }}"
-    - "{{ ma_user.dirs.wallpaper }}"
-    - "{{ ma_user.dirs.workspace }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.bin }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.lib }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.share }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.desktop }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.download }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.template }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.public }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.document }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.music }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.picture }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.video }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.image }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.screenshot }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.wallpaper }}"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.workspace }}"
     # systemd user service directory
     - "{{ ma_user.dirs.config }}/systemd/user"
   tags:
@@ -74,7 +74,7 @@
     dest: "{{ item.dest }}"
   with_items:
     - src: user-dirs.dirs
-      dest: "{{ ma_user.dirs.config }}/user-dirs.dirs"
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/user-dirs.dirs"
     - src: .profile
       dest: ~/.profile
   tags:

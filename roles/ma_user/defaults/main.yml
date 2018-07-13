@@ -4,36 +4,36 @@ ma_user:
   password: ""
   commands: []
   dirs:
-    home: "/home/{{ ma_user.name }}"
+    home: "/home/"
     # configuration files
-    config: "{{ ma_user.dirs.home }}/.config"
+    config: ".config"
     # local binaries
-    bin: "{{ ma_user.dirs.home }}/.local/bin"
+    bin: ".local/bin"
     # local libraries
-    lib: "{{ ma_user.dirs.home }}/.local/lib"
+    lib: ".local/lib"
     # local shared files
-    share: "{{ ma_user.dirs.home }}/.local/share"
+    share: ".local/share"
     # .Desktop entries
-    desktop: "{{ ma_user.dirs.home }}/Desktop"
+    desktop: "Desktop"
     # downloaded files
-    download: "{{ ma_user.dirs.home }}/Download"
+    download: "Download"
     # I have no idea but it is in xdg spec
-    template: "{{ ma_user.dirs.home }}/Templates"
+    template: "Templates"
     # files that is shared
-    public: "{{ ma_user.dirs.home }}/Public"
+    public: "Public"
     # documents
-    document: "{{ ma_user.dirs.home }}/Documents"
+    document: "Documents"
     # music
-    music: "{{ ma_user.dirs.home }}/Music"
+    music: "Music"
     # pictures => only includes personal photos
-    picture: "{{ ma_user.dirs.home }}/Pictures"
+    picture: "Pictures"
     # video => only includes personal videos
-    video: "{{ ma_user.dirs.home }}/Videos"
+    video: "Videos"
     # images
-    image: "{{ ma_user.dirs.home }}/Images"
+    image: "Images"
     # screenshots
-    screenshot: "{{ ma_user.dirs.home }}/Images/Screenshots"
+    screenshot: "Images/Screenshots"
     # wallpapers
-    wallpaper: "{{ ma_user.dirs.home }}/Images/Wallpapers"
+    wallpaper: "Images/Wallpapers"
     # workspace for programming
-    workspace: "{{ ma_user.dirs.home }}/Workspace"
+    workspace: "Workspace"
