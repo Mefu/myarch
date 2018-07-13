@@ -18,3 +18,20 @@
   tags:
     - vbox_guest
     - package
+
+####################################################################################################
+#
+# Enable
+#
+####################################################################################################
+- name: Enable virtualbox kernel modules.
+  become: yes
+  become_user: root
+  become_method: sudo
+  systemd:
+    name: vboxservice
+    enabled: yes
+  when: "ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'virtualbox'"
+  tags:
+    - dm
+    - service
