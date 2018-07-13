@@ -1,0 +1,25 @@
+---
+ma_user:
+  name: mefu
+  password: $6$cUwEauWK3pJ9IN$1LFeHOBHslJvg2idCFc3zisS0fKVrdputK/Imrq1xu.dScoYkSAipeMxuMB8KaE/YYnsGnnd/SVJDwMBL0Sg6/
+  commands:
+    - /sbin/shutdown
+    - /sbin/reboot
+  dirs:
+    home: "/home/{{ ma_user.name }}"
+    config: "{{ ma_user.dirs.home }}/.config"
+    bin: "{{ ma_user.dirs.home }}/.local/bin"
+    lib: "{{ ma_user.dirs.home }}/.local/lib"
+    share: "{{ ma_user.dirs.home }}/.local/share"
+    desktop: "{{ ma_user.dirs.home }}/desktop"
+    download: "{{ ma_user.dirs.home }}/download"
+    templates: "{{ ma_user.dirs.home }}/templates"
+    public: "{{ ma_user.dirs.home }}/public"
+    documents: "{{ ma_user.dirs.home }}/docs"
+    music: "{{ ma_user.dirs.home }}/music"
+    pictures: "{{ ma_user.dirs.home }}/pictures"
+    videos: "{{ ma_user.dirs.home }}/videos"
+    images: "{{ ma_user.dirs.home }}/imgs"
+    screenshot: "{{ ma_user.dirs.home }}/imgs/ss"
+    wallpaper: "{{ ma_user.dirs.home }}/img/wps"
+    workspace: "{{ ma_user.dirs.home }}/workspace"

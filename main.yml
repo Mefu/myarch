@@ -1,0 +1,31 @@
+####################################################################################################
+# This playbook sets up a development environment in an arch linux environment
+####################################################################################################
+---
+- name: "Set up a personal work environment."
+
+  hosts: all
+
+  roles:
+    # create normal user
+    - ma_user
+    # - ma_font
+    # - ma_shell
+    # - ma_audio
+    # - ma_network
+    # - ma_dm
+    # - ma_xserver
+    # - ma_wm
+    # - ma_bar
+    # - ma_notification
+    # - ma_runner
+    # - ma_screenlock
+    # - ma_audio_ui
+    # - ma_network_ui
+    # - ma_terminal
+    # - ma_music_player
+    # - ma_video_player
+    # - ma_file_manager
+    # - ma_text_editor
+    # - ma_browser
+    # - ma_theme

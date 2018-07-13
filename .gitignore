@@ -1,0 +1,8 @@
+# ignore vagrant directory
+vagrant
+
+# ignore retry file of ansible
+*.retry
+
+# ignore sublime text related files
+*.sublime*

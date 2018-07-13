@@ -1,0 +1,39 @@
+---
+ma_user:
+  name: ""
+  password: ""
+  commands: []
+  dirs:
+    home: "/home/{{ ma_user.name }}"
+    # configuration files
+    config: "{{ ma_user.dirs.home }}/.config"
+    # local binaries
+    bin: "{{ ma_user.dirs.home }}/.local/bin"
+    # local libraries
+    lib: "{{ ma_user.dirs.home }}/.local/lib"
+    # local shared files
+    share: "{{ ma_user.dirs.home }}/.local/share"
+    # .Desktop entries
+    desktop: "{{ ma_user.dirs.home }}/Desktop"
+    # downloaded files
+    download: "{{ ma_user.dirs.home }}/Download"
+    # I have no idea but it is in xdg spec
+    template: "{{ ma_user.dirs.home }}/Templates"
+    # files that is shared
+    public: "{{ ma_user.dirs.home }}/Public"
+    # documents
+    document: "{{ ma_user.dirs.home }}/Documents"
+    # music
+    music: "{{ ma_user.dirs.home }}/Music"
+    # pictures => only includes personal photos
+    picture: "{{ ma_user.dirs.home }}/Pictures"
+    # video => only includes personal videos
+    video: "{{ ma_user.dirs.home }}/Videos"
+    # images
+    image: "{{ ma_user.dirs.home }}/Images"
+    # screenshots
+    screenshot: "{{ ma_user.dirs.home }}/Images/Screenshots"
+    # wallpapers
+    wallpaper: "{{ ma_user.dirs.home }}/Images/Wallpapers"
+    # workspace for programming
+    workspace: "{{ ma_user.dirs.home }}/Workspace"

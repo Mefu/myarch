@@ -1,0 +1,82 @@
+---
+################################################################################################
+#
+# Create the account that will use this computer as a user.
+#
+################################################################################################
+- name: Create normal user
+  become: yes
+  become_user: root
+  become_method: sudo
+  user:
+    name: "{{ ma_user.name }}"
+    password: "{{ ma_user.password }}"
+    home: "{{ ma_user.dirs.home }}"
+    shell: /bin/bash
+    append: yes
+    groups: 'systemd-journal'
+  tags:
+    - user
+
+################################################################################################
+#
+# Configuration of user
+#
+################################################################################################
+- name: Give this user sudo access for a few commands.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    # can only use shutdown and reboot
+    content: "{{ ma_user.name }} ALL=(root) NOPASSWD: {{ ma_user.commands|join(',') }}\n"
+    dest: "/etc/sudoers.d/{{ ma_user.name }}"
+  tags:
+    - user
+    - sudo
+
+# These paths are referred all throughout other roles
+# so take care to modify
+- name: Create user directories.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "{{ ma_user.dirs.config }}"
+    - "{{ ma_user.dirs.bin }}"
+    - "{{ ma_user.dirs.lib }}"
+    - "{{ ma_user.dirs.share }}"
+    - "{{ ma_user.dirs.desktop }}"
+    - "{{ ma_user.dirs.download }}"
+    - "{{ ma_user.dirs.template }}"
+    - "{{ ma_user.dirs.public }}"
+    - "{{ ma_user.dirs.document }}"
+    - "{{ ma_user.dirs.music }}"
+    - "{{ ma_user.dirs.picture }}"
+    - "{{ ma_user.dirs.video }}"
+    - "{{ ma_user.dirs.image }}"
+    - "{{ ma_user.dirs.screenshot }}"
+    - "{{ ma_user.dirs.wallpaper }}"
+    - "{{ ma_user.dirs.workspace }}"
+    # systemd user service directory
+    - "{{ ma_user.dirs.config }}/systemd/user"
+  tags:
+    - user
+    - directory
+
+- name: Copy configuration files.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: user-dirs.dirs
+      dest: "{{ ma_user.dirs.config }}/user-dirs.dirs"
+    - src: .profile
+      dest: ~/.profile
+  tags:
+    - user
+    - config
