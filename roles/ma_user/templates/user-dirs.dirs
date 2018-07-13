@@ -9,9 +9,9 @@
 #
 XDG_DESKTOP_DIR="$HOME/{{ ma_user.dirs.desktop }}"
 XDG_DOWNLOAD_DIR="$HOME/{{ ma_user.dirs.download }}"
-XDG_TEMPLATES_DIR="$HOME/{{ ma_user.dirs.template }}"
+XDG_TEMPLATES_DIR="$HOME/{{ ma_user.dirs.templates }}"
 XDG_PUBLICSHARE_DIR="$HOME/{{ ma_user.dirs.public }}"
-XDG_DOCUMENTS_DIR="$HOME/{{ ma_user.dirs.document }}"
+XDG_DOCUMENTS_DIR="$HOME/{{ ma_user.dirs.documents }}"
 XDG_MUSIC_DIR="$HOME/{{ ma_user.dirs.music }}"
-XDG_PICTURES_DIR="$HOME/{{ ma_user.dirs.picture }}"
-XDG_VIDEOS_DIR="$HOME/{{ ma_user.dirs.video }}"
+XDG_PICTURES_DIR="$HOME/{{ ma_user.dirs.pictures }}"
+XDG_VIDEOS_DIR="$HOME/{{ ma_user.dirs.videos }}"

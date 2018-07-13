@@ -20,6 +20,6 @@ ma_user:
     pictures: "pictures"
     videos: "videos"
     images: "imgs"
-    screenshot: "imgs/ss"
-    wallpaper: "img/wps"
+    screenshots: "imgs/ss"
+    wallpapers: "img/wps"
     workspace: "workspace"
