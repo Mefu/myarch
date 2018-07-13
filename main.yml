@@ -9,7 +9,7 @@
   roles:
     # create normal user
     - ma_user
-    # - ma_font
+    - ma_font
     # - ma_shell
     # - ma_audio
     # - ma_network

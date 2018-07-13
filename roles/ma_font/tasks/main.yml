@@ -1,0 +1,36 @@
+---
+################################################################################################
+#
+# Installation of fonts
+#
+################################################################################################
+- name: Install required packages.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    # to use in terminal
+    - ttf-inconsolata
+    # to use in text editor
+    - ttf-hack
+    # to have a font family that has most of the unicode
+    - noto-fonts
+    - noto-fonts-cjk
+    - noto-fonts-emoji
+    - noto-fonts-extra
+    # to have an icon font
+    - ttf-font-awesome
+  tags:
+    - font
+    - package
+
+################################################################################################
+#
+# Configuration
+#
+################################################################################################
+
+# yeah no config here
