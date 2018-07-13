@@ -28,6 +28,6 @@
     # - ma_music_player
     # - ma_video_player
     # - ma_file_manager
-    # - ma_text_editor
-    # - ma_browser
+    - ma_text_editor
+    - ma_browser
     # - ma_theme
