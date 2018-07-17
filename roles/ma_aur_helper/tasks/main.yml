@@ -1,0 +1,18 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for yay.
+  become: yes
+  become_user: "{{ ma_user.name }}" 
+  become_method: sudo
+  aur:
+    name: "{{ item }}"
+    skip_installed: yes 
+  with_items:
+    - yay
+  tags:
+    - aur_helper 
+    - package

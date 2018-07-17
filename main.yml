@@ -11,6 +11,7 @@
   roles:
     # create normal user
     - ma_user
+    - ma_aur_helper
     - ma_font
     - ma_shell
     # - ma_audio
@@ -32,3 +33,16 @@
     - ma_browser
     # - ma_theme
     - ma_vbox_guest
+  tasks:
+    - name: Update all pacman packages.
+      pacman:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Update all aur packages.
+      become: yes
+      become_user: "{{ ma_user.name }}"
+      become_method: sudo
+      aur:
+        upgrade: yes
+

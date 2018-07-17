@@ -27,7 +27,7 @@
   become_method: sudo
   aur:
     name: "{{ item }}"
-    skip_installed: true
+    skip_installed: yes 
   with_items:
     - polybar-git
   tags:

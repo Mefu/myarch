@@ -13,3 +13,7 @@ fi
 
 # set sxhkd shell to sh
 export SXHKD_SHELL="/usr/bin/bash"
+
+# start autocutsel that syncs clipboards
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &

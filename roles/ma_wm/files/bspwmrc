@@ -18,3 +18,13 @@ sxhkd &
 
 # polybar
 systemctl --user start polybar
+
+{% if ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'virtualbox' %}
+# VirtualBox modules
+VBoxClient --clipboard --seamless --display --checkhostversion
+
+# inverse alt and super
+setxkbmap -option altwin:swap_alt_win 
+{% endif %}
+
+setxkbmap -option caps:super
