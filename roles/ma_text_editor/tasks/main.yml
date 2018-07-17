@@ -29,6 +29,7 @@
   git:
     repo: https://github.com/syl20bnr/spacemacs
     dest: "{{ ma_user.dirs.home }}/.emacs.d"
+    version: develop 
   tags:
     - text_editor
     - config

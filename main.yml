@@ -44,4 +44,3 @@
       become_method: sudo
       aur:
         upgrade: yes
-
