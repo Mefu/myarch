@@ -9,7 +9,6 @@
   hosts: all
 
   roles:
-    # create normal user
     - ma_user
     - ma_aur_helper
     - ma_font
@@ -31,7 +30,7 @@
     # - ma_file_manager
     - ma_text_editor
     - ma_browser
-    # - ma_theme
+    - ma_theme
     - ma_vbox_guest
   tasks:
     - name: Update all pacman packages.

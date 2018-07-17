@@ -6,3 +6,6 @@ vagrant
 
 # ignore sublime text related files
 *.sublime*
+
+# ignore emacs autosave files
+*.#*

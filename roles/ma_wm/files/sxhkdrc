@@ -79,11 +79,11 @@ super + shift + Return
 
 # program launcher
 super + d
-  exec rofi -show run -font 'Noto Sans 11'
+  exec bash -c "rofi -show run -font 'Noto Sans 14' -theme Adapta-Nokto"
 
 # window switcher
 super + Tab
-  exec rofi -show window -font 'Noto Sans 11'
+  exec bash -c "rofi -show window -font 'Noto Sans 14' -theme Adapta-Nokto"
 
 ####################################################################################################
 #

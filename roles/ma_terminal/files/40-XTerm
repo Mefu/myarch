@@ -3,7 +3,7 @@
 !-------------------------------------------------------------------------------
 
 !! font
-xterm*faceName: Inconsolata:size=11:style=Regular
+xterm*faceName: Inconsolata:size=14:style=Regular
 
 !! special
 xterm*background:                   black_dark

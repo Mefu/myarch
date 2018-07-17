@@ -22,7 +22,28 @@
 #
 # Configuration
 #
-################################################################################################
+####################################################################################################
+- name: Create config directory of rofi.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/rofi"
+  tags:
+    - runner
+    - config
+    - directory
 
-# Again I am lazy so I did not attempt to configure rofi, but people are doing amazing stuff
-# with it. For shortcuts, check md_wm/files/sxhkdrc
+- name: Download Adapta-Nokto theme for rofi.
+  become: yes
+  become_user: "{{ ma_user.name }}"
+  become_method: sudo
+  get_url:
+    url: https://raw.githubusercontent.com/DaveDavenport/rofi-themes/master/Official%20Themes/Adapta-Nokto.rasi
+    dest: "{{ ma_user.dirs.home}}/{{ ma_user.dirs.config }}/rofi/Adapta-Nokto.rasi"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  tags:
+    - runner
+    - config
