@@ -13,3 +13,6 @@ fi
 # stuff for uniform look across gtk and qt
 export GTK_THEME="Adapta-Nokto"
 export QT_STYLE_OVERRIDE="kvantum"
+
+# aliases
+alias emacs='env SHELL="/usr/bin/bash" emacs -nw'

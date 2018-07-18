@@ -39,9 +39,13 @@
 # so take care to modify
 - name: Create user directories.
   become: yes
-  become_user: "{{ ma_user.name }}"
+  become_user: root
   become_method: sudo
-  file: path="{{ item }}" state=directory
+  file: 
+    path: "{{ item }}"
+    state: directory
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
   with_items:
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}"
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.bin }}"
@@ -67,11 +71,13 @@
 
 - name: Copy configuration files.
   become: yes
-  become_user: "{{ ma_user.name }}"
+  become_user: root
   become_method: sudo
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
   with_items:
     - src: user-dirs.dirs
       dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/user-dirs.dirs"

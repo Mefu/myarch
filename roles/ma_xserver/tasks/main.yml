@@ -29,10 +29,14 @@
 #
 ####################################################################################################
 - name: Create required directories for xorg config.
-  file: path="{{ item }}" state=directory
   become: yes
-  become_user: "{{ ma_user.name }}"
+  become_user: root
   become_method: sudo
+  file: 
+    path: "{{ item }}" 
+    state: directory
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
   with_items:
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources"
   tags:
@@ -42,11 +46,13 @@
 
 - name: Copy required config files for xorg.
   become: yes
-  become_user: "{{ ma_user.name }}"
+  become_user: root
   become_method: sudo
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
   with_items:
     # stuff here that I found to get working various things
     # I forgot why those exist there.

@@ -4,9 +4,9 @@
 # Installation
 #
 ####################################################################################################
-- name: Install dependency packages for polybar.
+- name: Install required packages for theme.
   become: yes
-  become_user: "{{ ma_user.name }}"
+  become_user: root
   become_method: sudo
   pacman:
     name: "{{ item }}"
@@ -28,3 +28,36 @@
 # Configuration of themes
 #
 ####################################################################################################
+- name: Create required directories for theme configuration.
+  become: yes
+  become_user: root
+  become_method: sudo
+  file: 
+    path: "{{ item }}"
+    state: directory
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/gtk-3.0"
+  tags:
+    - theme
+    - config
+    - directory
+
+- name: Copy theme config files.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - src: .gtkrc-2.0
+      dest: "{{ ma_user.dirs.home }}/.gtkrc-2.0"
+    - src: settings.ini
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/gtk-3.0/settings.ini"
+  tags:
+    - theme
+    - config
