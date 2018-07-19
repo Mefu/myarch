@@ -27,7 +27,7 @@
   become: yes
   become_user: root
   become_method: sudo
-  file: 
+  file:
     path: "{{ item }}"
     state: directory
     group: "{{ ma_user.name }}"
@@ -44,7 +44,7 @@
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ ma_user.name }}"
