@@ -21,7 +21,7 @@ ma_user:
     pictures: "pictures"
     videos: "videos"
     images: "imgs"
-    screenshots: "imgs/ss"
+    screenshots: "img/ss"
     wallpapers: "img/wps"
     workspace: "workspace"
 

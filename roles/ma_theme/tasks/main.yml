@@ -14,6 +14,9 @@
   with_items:
     # gtk theme
     - adapta-gtk-theme
+    # qt5 theme engines
+    - qt5ct
+    - kvantum-qt5
     # matching qt5 style
     - kvantum-theme-adapta
     # papirus icon theme

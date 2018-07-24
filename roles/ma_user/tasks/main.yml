@@ -82,7 +82,7 @@
     - src: user-dirs.dirs
       dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/user-dirs.dirs"
     - src: .profile
-      dest: ~/.profile
+      dest: "{{ ma_user.dirs.home }}/.profile"
   tags:
     - user
     - config

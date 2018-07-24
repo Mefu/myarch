@@ -11,8 +11,8 @@ if [ -d "{{ ma_user.dirs.home }}/{{ ma_user.dirs.bin }}" ] ; then
 fi
 
 # stuff for uniform look across gtk and qt
-export GTK_THEME="Adapta-Nokto"
-export QT_STYLE_OVERRIDE="kvantum"
+export GTK_THEME="Adapta"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # aliases
 alias emacs='env SHELL="/usr/bin/bash" emacs -nw'
