@@ -1,0 +1,34 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for lxqt.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - lxqt-admin
+    - lxqt-config
+    - lxqt-globalkeys
+    - lxqt-panel
+    - lxqt-policykit
+    - lxqt-powermanagement
+    - lxqt-qtplugin
+    - lxqt-session
+    - lxqt-sudo
+    - lxqt-themes
+    - pcmanfm-qt
+  tags:
+    - de
+    - package
+
+####################################################################################################
+#
+# Configuration
+#
+####################################################################################################

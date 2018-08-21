@@ -12,26 +12,27 @@
     - ma_user
     - ma_aur_helper
     - ma_font
-    - ma_shell
+    # - ma_shell
     # - ma_audio
     # - ma_network
     - ma_dm
     - ma_xserver
     - ma_wm
-    - ma_bar
-    - ma_notification
-    - ma_runner
+    - ma_de
+    # - ma_bar
+    # - ma_notification
+    # - ma_runner
     # - ma_screenlock
     # - ma_audio_ui
     # - ma_network_ui
     - ma_terminal
     # - ma_music_player
     # - ma_video_player
-    - ma_file_manager
-    - ma_text_editor
-    - ma_browser
-    - ma_theme
-    - ma_vbox_guest
+    # - ma_file_manager
+    # - ma_text_editor
+    # - ma_browser
+    # - ma_theme
+    # - ma_vbox_guest
   tasks:
     - name: Update all pacman packages.
       become: yes
@@ -43,7 +44,7 @@
 
     - name: Update all aur packages.
       become: yes
-      become_user: "{{ ma_user.name }}"
+      become_user: "{{ ma_aur_user.name }}"
       become_method: sudo
       aur:
         upgrade: yes

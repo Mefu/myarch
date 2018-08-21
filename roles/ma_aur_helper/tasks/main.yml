@@ -1,12 +1,39 @@
 ---
 ####################################################################################################
 #
+# Configuration
+#
+####################################################################################################
+- name: Create a user for aur helper.
+  become: yes
+  become_user: root
+  become_method: sudo
+  user:
+    name: "{{ ma_aur_user.name }}"
+    system: yes
+    shell: /bin/bash
+  tags:
+    - aur_helper
+
+- name: Give this user full passwordless sudo access.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    content: "{{ ma_aur_user.name }} ALL=(root) NOPASSWD: ALL\n"
+    dest: "/etc/sudoers.d/{{ ma_aur_user.name }}"
+  tags:
+    - aur_helper
+    - sudo
+
+####################################################################################################
+#
 # Installation
 #
 ####################################################################################################
 - name: Install required packages for yay.
   become: yes
-  become_user: "{{ ma_user.name }}" 
+  become_user: "{{ ma_aur_user.name }}" 
   become_method: sudo
   aur:
     name: "{{ item }}"

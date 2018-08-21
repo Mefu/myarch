@@ -54,8 +54,6 @@
     group: "{{ ma_user.name }}"
     owner: "{{ ma_user.name }}"
   with_items:
-    # stuff here that I found to get working various things
-    # I forgot why those exist there.
     - src: .xsessionrc
       dest: "{{ ma_user.dirs.home }}/.xsessionrc"
 

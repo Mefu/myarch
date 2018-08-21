@@ -1,6 +1,6 @@
 ---
 ma_user:
-  name: ""
+  name: "ma_user"
   password: ""
   commands: []
   dirs:

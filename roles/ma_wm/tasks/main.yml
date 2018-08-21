@@ -13,7 +13,6 @@
     state: latest
   with_items:
     - bspwm
-    - sxhkd
   tags:
     - wm
     - package
@@ -23,7 +22,7 @@
 # Configuration
 #
 ####################################################################################################
-- name: Create required directory for bspwm and sxkhd config
+- name: Create required directory for bspwm config
   become: yes
   become_user: root
   become_method: sudo
@@ -34,13 +33,12 @@
     owner: "{{ ma_user.name }}"
   with_items:
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/bspwm"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd"
   tags:
     - wm
     - config
     - directory
 
-- name: Copy bspwmrc and sxkhdrc config files.
+- name: Copy bspwm config files.
   become: yes
   become_user: root
   become_method: sudo
@@ -53,8 +51,6 @@
   with_items:
     - src: bspwmrc
       dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/bspwm/bspwmrc"
-    - src: sxhkdrc
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc"
   tags:
     - wm
     - config

@@ -13,8 +13,6 @@
     password: "{{ ma_user.password }}"
     home: "{{ ma_user.dirs.home }}"
     shell: /bin/bash
-    append: yes
-    groups: 'systemd-journal'
   tags:
     - user
 
@@ -63,8 +61,6 @@
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.screenshots }}"
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.wallpapers }}"
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.workspace }}"
-    # systemd user service directory
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/systemd/user"
   tags:
     - user
     - directory
@@ -81,8 +77,6 @@
   with_items:
     - src: user-dirs.dirs
       dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/user-dirs.dirs"
-    - src: .profile
-      dest: "{{ ma_user.dirs.home }}/.profile"
   tags:
     - user
     - config

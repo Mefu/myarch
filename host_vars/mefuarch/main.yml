@@ -1,11 +1,10 @@
 ---
 ma_user:
   name: mefu
-  password: $6$cUwEauWK3pJ9IN$1LFeHOBHslJvg2idCFc3zisS0fKVrdputK/Imrq1xu.dScoYkSAipeMxuMB8KaE/YYnsGnnd/SVJDwMBL0Sg6/
+  password: $6$zhdAYFjHO9UC5Ots$xCLJQKvJ60PxNQNv44BYd1eaneDyvfL3ZlSE1snAdiU0foA1q5aqPvimIxCDE2D/bjoUNzYMu4qbJXSRAC8R60
   commands:
     - /usr/bin/shutdown
     - /usr/bin/reboot
-    - /usr/bin/pacman
   dirs:
     home: "/home/mefu"
     config: ".config"
@@ -20,10 +19,13 @@ ma_user:
     music: "music"
     pictures: "pictures"
     videos: "videos"
-    images: "imgs"
-    screenshots: "img/ss"
-    wallpapers: "img/wps"
+    images: "images"
+    screenshots: "images/screenshots"
+    wallpapers: "images/wallpapers"
     workspace: "workspace"
+
+ma_aur_user:
+  name: mefu_aur
 
 ma_shell:
   fish:
