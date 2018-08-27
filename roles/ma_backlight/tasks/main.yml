@@ -1,0 +1,51 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for enlighten.
+  become: yes
+  become_user: "{{ ma_aur_user.name }}"
+  become_method: sudo
+  aur:
+    name: "{{ item }}"
+    skip_installed: yes
+  with_items:
+    - enlighten-git
+  tags:
+    - backlight
+    - package
+
+####################################################################################################
+#
+# Configuration of enlighten
+#
+####################################################################################################
+- name: Add user to video group
+  become: yes
+  become_user: root
+  become_method: sudo
+  user:
+    name: "{{ ma_user.name }}"
+    append: yes
+    groups: video
+  tags:
+    - backlight
+    - config
+
+- name: Copy backlight hotkey file.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - src: 21-backlight
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/21-backlight"
+  tags:
+    - backlight
+    - hotkey

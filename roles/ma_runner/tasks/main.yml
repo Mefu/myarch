@@ -1,9 +1,9 @@
 ---
-################################################################################################
+####################################################################################################
 #
 # Installation of rofi
 #
-################################################################################################s
+####################################################################################################
 - name: Install required packages for rofi.
   become: yes
   become_user: root
@@ -17,8 +17,7 @@
     - runner
     - package
 
-
-################################################################################################
+####################################################################################################
 #
 # Configuration
 #
@@ -27,7 +26,7 @@
   become: yes
   become_user: root
   become_method: sudo
-  file: 
+  file:
     path: "{{ item }}"
     state: directory
     group: "{{ ma_user.name }}"
@@ -39,15 +38,33 @@
     - config
     - directory
 
-- name: Download Adapta-Nokto theme for rofi.
+- name: Download theme for rofi.
   become: yes
   become_user: root
   become_method: sudo
   get_url:
-    url: https://raw.githubusercontent.com/DaveDavenport/rofi-themes/master/Official%20Themes/Adapta-Nokto.rasi
-    dest: "{{ ma_user.dirs.home}}/{{ ma_user.dirs.config }}/rofi/Adapta-Nokto.rasi"
+    url: https://raw.githubusercontent.com/DaveDavenport/rofi-themes/master/Official%20Themes/solarized_alternate.rasi
+    dest: "{{ ma_user.dirs.home}}/{{ ma_user.dirs.config }}/rofi/solarized_alternate.rasi"
     group: "{{ ma_user.name }}"
     owner: "{{ ma_user.name }}"
   tags:
     - runner
+    - config
+
+- name: Copy hotkey file for rofi.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - src: 41-rofi
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/41-rofi"
+  notify:
+    - compile xresources
+  tags:
+    - terminal
     - config

@@ -1,8 +1,0 @@
-[Unit]
-Description=A fast and easy-to-use status bar
-Documentation=man:polybar(1)
-
-[Service]
-ExecStart=/usr/bin/polybar top --quiet
-ExecReload=/usr/bin/polybar-msg -p $MAINPID cmd restart
-ExecStop=/usr/bin/polybar-msg -p $MAINPID cmd quit

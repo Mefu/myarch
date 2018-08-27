@@ -1,0 +1,8 @@
+# Raise backlight
+XF86MonBrightnessUp
+  enlighten +10%
+
+# Raise backlight
+XF86MonBrightnessDown
+  enlighten -10%
+

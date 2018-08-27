@@ -1,0 +1,8 @@
+# default behavior is starting with fish
+super + Return
+  env SHELL=/usr/bin/fish urxvt
+
+# for instances where bash is required
+super + shift + Return
+  urxvt
+

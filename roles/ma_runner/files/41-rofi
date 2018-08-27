@@ -1,0 +1,8 @@
+# program launcher
+super + d
+  exec bash -c "rofi -show run -font 'Noto Sans 14' -theme solarized_alternate"
+
+# window switcher
+super + Tab
+  exec bash -c "rofi -show window -font 'Noto Sans 14' -theme solarized_alternate"
+

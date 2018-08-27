@@ -1,0 +1,18 @@
+---
+####################################################################################################
+#
+# Handlers for session
+#
+####################################################################################################
+- name: compile session
+  become: yes
+  become_user: root
+  become_method: sudo
+  assemble:
+    src: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d"
+    dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  tags:
+    - session
+    - config

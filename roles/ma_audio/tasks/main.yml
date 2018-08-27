@@ -4,7 +4,7 @@
 # Installation
 #
 ####################################################################################################
-- name: Install required packages for lxqt.
+- name: Install required packages for pulseaudio.
   become: yes
   become_user: root
   become_method: sudo
@@ -12,15 +12,10 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - lxqt-config
-    - lxqt-policykit
-    - lxqt-qtplugin
-    - lxqt-session
-    - lxqt-sudo
-    # here because it manages desktop
-    - pcmanfm-qt
+    - pulseaudio
+    - pulseaudio-alsa
   tags:
-    - de
+    - audio
     - package
 
 ####################################################################################################
@@ -28,3 +23,18 @@
 # Configuration
 #
 ####################################################################################################
+- name: Copy audio hotkey file.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - src: 20-audio
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/20-audio"
+  tags:
+    - audio
+    - hotkey

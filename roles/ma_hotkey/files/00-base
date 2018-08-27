@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# reload sxhkd
+super + alt + r
+  pkill -USR1 -x sxhkd
+

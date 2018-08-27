@@ -1,0 +1,48 @@
+####################################################################################################
+#
+# bspc commands
+#
+####################################################################################################
+
+# kill focused window
+super + shift + {w,q}
+  bspc node -{c,k}
+
+# change focus
+super + {Left,Down,Up,Right}
+  bspc node -f {west,south,north,east}
+
+# move selected node
+super + shift + {Left,Down,Up,Right}
+  bspc node -s {west,south,north,east}
+
+# preselect the direction to split
+super + {h,j,k,l,c}
+  bspc node -p {west,south,north,east,cancel}
+
+# window state fullscreen
+super + f
+  bspc node -t ~fullscreen
+
+# try to find a tabbed layout setting
+
+# toggle tiled
+super + t
+  bspc node -t ~tiled
+
+# toggle floating
+super + g
+  bspc node -t ~floating
+
+# focus a desktop
+super + {1-9,0}
+  bspc desktop -f '^{1-9,10}'
+
+# send to the given desktop
+super + control + {1-9,0}
+  bspc node -d '^{1-9,10}'
+
+# send current desktop to another monitor and focus
+super + control + {Left,Right}
+  bspc desktop -m {west,east} -f
+

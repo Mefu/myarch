@@ -1,10 +1,10 @@
 ---
 ################################################################################################
 #
-# Installation of rxvt-unicode and guake
+# Installation of rxvt-unicode
 #
 ################################################################################################
-- name: Install required packages.
+- name: Install required packages for urxvt.
   become: yes
   become_user: root
   become_method: sudo
@@ -26,7 +26,7 @@
 
 # xterm and urxvt configs are copied to xresources folder to be compiled into
 # one Xresources file. Check md_xserver/handlers/main.yml.
-- name: Copy config files for rxvt xterm and guake.
+- name: Copy config files for urxvt.
   become: yes
   become_user: root
   become_method: sudo
@@ -40,6 +40,24 @@
       dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/40-XTerm"
     - src: 50-URxvt
       dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/50-URxvt"
+  notify:
+    - compile xresources
+  tags:
+    - terminal
+    - config
+
+- name: Copy hotkey file for urxvt.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - src: 40-urxvt
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/40-urxvt"
   notify:
     - compile xresources
   tags:

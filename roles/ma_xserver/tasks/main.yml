@@ -32,8 +32,8 @@
   become: yes
   become_user: root
   become_method: sudo
-  file: 
-    path: "{{ item }}" 
+  file:
+    path: "{{ item }}"
     state: directory
     group: "{{ ma_user.name }}"
     owner: "{{ ma_user.name }}"
@@ -69,4 +69,3 @@
   tags:
     - xserver
     - config
-

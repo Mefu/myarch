@@ -4,15 +4,15 @@
 # Installation
 #
 ################################################################################################
-- name: Install required packages for emacs.
+- name: Install required packages for Sublime Text 3.
   become: yes
-  become_user: root
+  become_user: "{{ ma_aur_user.name }}"
   become_method: sudo
-  pacman:
+  aur:
     name: "{{ item }}"
-    state: latest
+    skip_installed: yes
   with_items:
-    - emacs
+    - sublime-text-dev
   tags:
     - text_editor
     - package
@@ -22,14 +22,3 @@
 # Configuration
 #
 ################################################################################################
-- name: Install spacemacs.
-  become: yes
-  become_user: "{{ ma_user.name }}"
-  become_method: sudo
-  git:
-    repo: https://github.com/syl20bnr/spacemacs
-    dest: "{{ ma_user.dirs.home }}/.emacs.d"
-    version: develop 
-  tags:
-    - text_editor
-    - config

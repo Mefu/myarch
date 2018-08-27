@@ -1,0 +1,41 @@
+---
+####################################################################################################
+#
+# Configuration
+#
+####################################################################################################
+- name: Create session config directory
+  become: yes
+  become_user: root
+  become_method: sudo
+  file:
+    path: "{{ item }}"
+    state: directory
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d"
+  tags:
+    - session
+    - config
+
+- name: Copy header and footer for session config file.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+    mode: 0755
+  with_items:
+    - src: 00-header.conf
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/00-header.conf"
+    - src: 99-footer.conf
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/99-footer.conf"
+  notify:
+    - compile session
+  tags:
+    - session
+    - config

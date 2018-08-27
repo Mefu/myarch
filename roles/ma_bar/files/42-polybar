@@ -1,0 +1,4 @@
+# reload polybar
+super + alt + b
+  polybar-msg -p `pidof polybar` cmd restart
+

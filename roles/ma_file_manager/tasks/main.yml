@@ -12,7 +12,7 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - dolphin
+    - pcmanfm-qt
   tags:
     - file_manager
     - package

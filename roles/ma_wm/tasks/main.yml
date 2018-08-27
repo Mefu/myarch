@@ -54,3 +54,22 @@
   tags:
     - wm
     - config
+
+- name: Copy bspwm hotkeys.
+  become: yes
+  become_user: root
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+    mode: 0755
+  with_items:
+    - src: 10-wm
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/10-wm"
+  notify:
+    - compile hotkeys
+  tags:
+    - wm
+    - config
