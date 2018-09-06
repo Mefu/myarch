@@ -1,10 +1,29 @@
 ---
 ####################################################################################################
 #
+# Installation
+#
+####################################################################################################
+- name: Install required packages for lxqt-session.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    # it is also installed in ma_de role
+    - lxqt-session
+  tags:
+    - session
+    - package
+
+####################################################################################################
+#
 # Configuration
 #
 ####################################################################################################
-- name: Create session config directory
+- name: Create session config and autostart directory
   become: yes
   become_user: root
   become_method: sudo
@@ -15,6 +34,7 @@
     owner: "{{ ma_user.name }}"
   with_items:
     - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d"
+    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart"
   tags:
     - session
     - config

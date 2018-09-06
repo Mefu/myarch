@@ -1,1 +1,1 @@
-mefu-le450 ansible_connection=local
+example ansible_connection=local
