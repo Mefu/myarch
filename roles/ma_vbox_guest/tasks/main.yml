@@ -35,3 +35,26 @@
   tags:
     - dm
     - service
+
+####################################################################################################
+#
+# Autostart
+#
+####################################################################################################
+- name: Copy desktop files for autostart.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+  with_items:
+    - src: VBoxClient.desktop
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart/VBoxClient.desktop"
+    - src: SwapAltWin.desktop
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart/SwapAltWin.desktop"
+  tags:
+    - hotkey
+    - autostart

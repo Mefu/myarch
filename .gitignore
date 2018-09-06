@@ -9,3 +9,10 @@ vagrant
 
 # ignore emacs autosave files
 *.#*
+
+# ignore inventory file
+inventory
+
+# ignore host_vars except example
+host_vars/*
+!host_vars/example

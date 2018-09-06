@@ -1,0 +1,46 @@
+---
+ma_user:
+  name: "ma_user"
+  password: ""
+  commands: []
+  dirs:
+    home: "/home/"
+    # configuration files
+    config: ".config"
+    # local binaries
+    bin: ".local/bin"
+    # local libraries
+    lib: ".local/lib"
+    # local shared files
+    share: ".local/share"
+    # .Desktop entries
+    desktop: "Desktop"
+    # downloaded files
+    download: "Download"
+    # I have no idea but it is in xdg spec
+    template: "Templates"
+    # files that is shared
+    public: "Public"
+    # documents
+    document: "Documents"
+    # music
+    music: "Music"
+    # pictures => only includes personal photos
+    picture: "Pictures"
+    # video => only includes personal videos
+    video: "Videos"
+    # images
+    image: "Images"
+    # screenshots
+    screenshot: "Images/Screenshots"
+    # wallpapers
+    wallpaper: "Images/Wallpapers"
+    # workspace for programming
+    workspace: "Workspace"
+
+ma_aur_user:
+  name: ma_aur
+
+ma_shell:
+  fish:
+    packages: []

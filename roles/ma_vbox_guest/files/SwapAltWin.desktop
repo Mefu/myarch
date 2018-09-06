@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Swap Alt and Win keys
+TryExec=setxkbmap
+Exec=setxkbmap -option altwin:swap_alt_win
