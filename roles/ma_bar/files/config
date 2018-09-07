@@ -20,6 +20,9 @@ alert = #bd2c40
 margin-top = 5
 margin-bottom = 5
 
+[settings]
+screenchange-reload = false
+
 [bar/top]
 enable-ipc = true
 
