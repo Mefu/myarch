@@ -9,10 +9,10 @@
   become_user: root
   become_method: sudo
   assemble:
-    src: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources"
-    dest: "{{ ma_user.dirs.home }}/.Xresources"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    src: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources"
+    dest: "{{ user.dirs.home }}/.Xresources"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   tags:
     - xserver
     - config

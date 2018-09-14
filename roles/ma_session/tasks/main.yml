@@ -30,11 +30,11 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt/session.conf.d"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart"
   tags:
     - session
     - config
@@ -46,14 +46,14 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: 0755
   with_items:
     - src: 00-header.conf
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/00-header.conf"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt/session.conf.d/00-header.conf"
     - src: 99-footer.conf
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/99-footer.conf"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt/session.conf.d/99-footer.conf"
   notify:
     - compile session
   tags:

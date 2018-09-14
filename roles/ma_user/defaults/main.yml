@@ -1,39 +1,39 @@
 ---
-ma_user:
-  name: "ma_user"
+user:
+  name: ma_user
   password: ""
-  commands: []
+  sudo_commands: []
   dirs:
-    home: "/home/"
+    home: /home/
     # configuration files
-    config: ".config"
+    config: .config
     # local binaries
-    bin: ".local/bin"
+    bin: .local/bin
     # local libraries
-    lib: ".local/lib"
+    lib: .local/lib
     # local shared files
-    share: ".local/share"
+    share: .local/share
     # .Desktop entries
-    desktop: "Desktop"
+    desktop: Desktop
     # downloaded files
-    download: "Download"
+    download: Download
     # I have no idea but it is in xdg spec
-    template: "Templates"
+    template: Templates
     # files that is shared
-    public: "Public"
+    public: Public
     # documents
-    document: "Documents"
+    document: Documents
     # music
-    music: "Music"
+    music: Music
     # pictures => only includes personal photos
-    picture: "Pictures"
+    picture: Pictures
     # video => only includes personal videos
-    video: "Videos"
+    video: Videos
     # images
-    image: "Images"
+    image: Images
     # screenshots
-    screenshot: "Images/Screenshots"
+    screenshot: Images/Screenshots
     # wallpapers
-    wallpaper: "Images/Wallpapers"
+    wallpaper: Images/Wallpapers
     # workspace for programming
-    workspace: "Workspace"
+    workspace: Workspace

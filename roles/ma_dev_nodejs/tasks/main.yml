@@ -30,12 +30,12 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: 0755
   with_items:
     - src: 90-yarn-global-bin.conf
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/90-yarn-global-bin.conf"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt/session.conf.d/90-yarn-global-bin.conf"
   notify:
     - compile session
   tags:

@@ -1,0 +1,12 @@
+---
+user:
+  name: ma_user
+  dirs:
+    home: /home/
+    config: .config
+
+hotkey:
+  audio:
+    raise: XF86AudioRaiseVolume
+    lower: XF86AudioLowerVolume
+    mute: XF86AudioMute

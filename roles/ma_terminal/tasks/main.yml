@@ -33,13 +33,13 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: 40-XTerm
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/40-XTerm"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/40-XTerm"
     - src: 50-URxvt
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/50-URxvt"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/50-URxvt"
   notify:
     - compile xresources
   tags:
@@ -53,11 +53,11 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: 40-urxvt
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/40-urxvt"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/40-urxvt"
   notify:
     - compile xresources
   tags:

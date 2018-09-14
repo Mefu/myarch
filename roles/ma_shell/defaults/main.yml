@@ -1,10 +1,10 @@
 ---
-ma_user:
-  name: ""
+user:
+  name: ma_user
   dirs:
-    home: "/home/"
-    config: ".config"
+    home: /home/
+    config: .config
 
-ma_shell:
+shell:
   fish:
     packages: []

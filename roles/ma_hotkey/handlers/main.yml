@@ -9,10 +9,10 @@
   become_user: root
   become_method: sudo
   assemble:
-    src: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d"
-    dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    src: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d"
+    dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   tags:
     - hotkey
     - config

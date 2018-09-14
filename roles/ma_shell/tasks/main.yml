@@ -26,13 +26,13 @@
   become: yes
   become_user: root
   become_method: sudo
-  file: 
+  file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/functions"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/fish/functions"
   tags:
     - shell
     - config
@@ -45,9 +45,9 @@
   become_method: sudo
   get_url:
     url: https://git.io/fundle
-    dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/functions/fundle.fish"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/fish/functions/fundle.fish"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   tags:
     - shell
     - config
@@ -60,11 +60,11 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: config.fish
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/fish/config.fish"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/fish/config.fish"
   notify:
     - update fisher packages
   tags:

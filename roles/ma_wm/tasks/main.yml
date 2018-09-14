@@ -29,10 +29,10 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/bspwm"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/bspwm"
   tags:
     - wm
     - config
@@ -45,12 +45,12 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: 0755
   with_items:
     - src: bspwmrc
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/bspwm/bspwmrc"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/bspwm/bspwmrc"
   tags:
     - wm
     - config
@@ -62,12 +62,12 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: 0755
   with_items:
     - src: 10-wm
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/10-wm"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/10-wm"
   notify:
     - compile hotkeys
   tags:

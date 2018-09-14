@@ -7,11 +7,11 @@
 # homedir-relative path, or XDG_xxx_DIR="/yyy", where /yyy is an
 # absolute path. No other format is supported.
 #
-XDG_DESKTOP_DIR="$HOME/{{ ma_user.dirs.desktop }}"
-XDG_DOWNLOAD_DIR="$HOME/{{ ma_user.dirs.download }}"
-XDG_TEMPLATES_DIR="$HOME/{{ ma_user.dirs.templates }}"
-XDG_PUBLICSHARE_DIR="$HOME/{{ ma_user.dirs.public }}"
-XDG_DOCUMENTS_DIR="$HOME/{{ ma_user.dirs.documents }}"
-XDG_MUSIC_DIR="$HOME/{{ ma_user.dirs.music }}"
-XDG_PICTURES_DIR="$HOME/{{ ma_user.dirs.pictures }}"
-XDG_VIDEOS_DIR="$HOME/{{ ma_user.dirs.videos }}"
+XDG_DESKTOP_DIR="$HOME/{{ user.dirs.desktop }}"
+XDG_DOWNLOAD_DIR="$HOME/{{ user.dirs.download }}"
+XDG_TEMPLATES_DIR="$HOME/{{ user.dirs.templates }}"
+XDG_PUBLICSHARE_DIR="$HOME/{{ user.dirs.public }}"
+XDG_DOCUMENTS_DIR="$HOME/{{ user.dirs.documents }}"
+XDG_MUSIC_DIR="$HOME/{{ user.dirs.music }}"
+XDG_PICTURES_DIR="$HOME/{{ user.dirs.pictures }}"
+XDG_VIDEOS_DIR="$HOME/{{ user.dirs.videos }}"

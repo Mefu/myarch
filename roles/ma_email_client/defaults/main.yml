@@ -1,9 +1,6 @@
 ---
-aur_user:
-  name: ma_aur_user
-
 user:
   name: ma_user
   dirs:
     home: /home/
-    config: .config
+    share: .local/share

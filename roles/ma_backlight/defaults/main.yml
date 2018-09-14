@@ -7,3 +7,8 @@ user:
   dirs:
     home: /home/
     config: .config
+
+hotkey:
+  backlight:
+    up: XF86MonBrightnessUp
+    down: XF86MonBrightnessDown

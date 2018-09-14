@@ -48,13 +48,13 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: VBoxClient.desktop
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart/VBoxClient.desktop"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/VBoxClient.desktop"
     - src: SwapAltWin.desktop
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart/SwapAltWin.desktop"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/SwapAltWin.desktop"
   tags:
     - hotkey
     - autostart

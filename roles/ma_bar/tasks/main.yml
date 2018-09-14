@@ -23,7 +23,7 @@
 
 - name: Install required packages for polybar.
   become: yes
-  become_user: "{{ ma_aur_user.name }}"
+  become_user: "{{ aur_user.name }}"
   become_method: sudo
   aur:
     name: "{{ item }}"
@@ -46,10 +46,10 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/polybar"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/polybar"
   tags:
     - bar
     - config
@@ -63,11 +63,11 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: config
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/polybar/config"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/polybar/config"
   tags:
     - bar
     - config
@@ -79,11 +79,11 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: 42-polybar
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/42-polybar"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/42-polybar"
   tags:
     - bar
     - hotkey
@@ -95,11 +95,11 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: polybar.desktop
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart/polybar.desktop"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/polybar.desktop"
   tags:
     - bar
     - service

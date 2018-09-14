@@ -9,9 +9,9 @@
   become_user: root
   become_method: sudo
   user:
-    name: "{{ ma_user.name }}"
-    password: "{{ ma_user.password }}"
-    home: "{{ ma_user.dirs.home }}"
+    name: "{{ user.name }}"
+    password: "{{ user.password }}"
+    home: "{{ user.dirs.home }}"
     shell: /bin/bash
   tags:
     - user
@@ -27,8 +27,8 @@
   become_method: sudo
   copy:
     # can only use shutdown and reboot
-    content: "{{ ma_user.name }} ALL=(root) NOPASSWD: {{ ma_user.commands|join(',') }}\n"
-    dest: "/etc/sudoers.d/{{ ma_user.name }}"
+    content: "{{ user.name }} ALL=(root) NOPASSWD: {{ user.sudo_commands|join(',') }}\n"
+    dest: "/etc/sudoers.d/{{ user.name }}"
   tags:
     - user
     - sudo
@@ -39,28 +39,28 @@
   become: yes
   become_user: root
   become_method: sudo
-  file: 
+  file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.bin }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.lib }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.share }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.desktop }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.download }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.templates }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.public }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.documents }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.music }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.pictures }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.videos }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.images }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.screenshots }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.wallpapers }}"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.workspace }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.bin }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.lib }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.share }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.desktop }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.download }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.templates }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.public }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.documents }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.music }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.pictures }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.videos }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.images }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.screenshots }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.wallpapers }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.workspace }}"
   tags:
     - user
     - directory
@@ -72,11 +72,11 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: user-dirs.dirs
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/user-dirs.dirs"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/user-dirs.dirs"
   tags:
     - user
     - config

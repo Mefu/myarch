@@ -1,6 +1,6 @@
 fundle plugin 'edc/bass'
 
-{% for package in ma_shell.fish.packages %}
+{% for package in shell.fish.packages %}
 fundle plugin "{{ package }}"
 {% endfor %}
 

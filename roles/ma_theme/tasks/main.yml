@@ -37,12 +37,12 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/gtk-3.0"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/Kvantum"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/gtk-3.0"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/Kvantum"
   tags:
     - theme
     - config
@@ -55,17 +55,17 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: .gtkrc-2.0
-      dest: "{{ ma_user.dirs.home }}/.gtkrc-2.0"
+      dest: "{{ user.dirs.home }}/.gtkrc-2.0"
     - src: settings.ini
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/gtk-3.0/settings.ini"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/gtk-3.0/settings.ini"
     - src: lxqt.conf
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/lxqt.conf"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt/lxqt.conf"
     - src: kvantum.kvconfig
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/Kvantum/kvantum.kvconfig"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/Kvantum/kvantum.kvconfig"
   tags:
     - theme
     - config
@@ -77,12 +77,12 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: 0755
   with_items:
     - src: 30-gtk.conf
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/30-gtk.conf"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt/session.conf.d/30-gtk.conf"
   notify:
     - compile session
   tags:

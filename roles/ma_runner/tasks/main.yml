@@ -6,7 +6,7 @@
 ####################################################################################################
 - name: Install required packages for rofi.
   become: yes
-  become_user: "{{ ma_aur_user.name }}"
+  become_user: "{{ aur_user.name }}"
   become_method: sudo
   aur:
     name: "{{ item }}"
@@ -29,10 +29,10 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/rofi"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/rofi"
   tags:
     - runner
     - config
@@ -44,9 +44,9 @@
   become_method: sudo
   get_url:
     url: https://raw.githubusercontent.com/DaveDavenport/rofi-themes/master/Official%20Themes/solarized_alternate.rasi
-    dest: "{{ ma_user.dirs.home}}/{{ ma_user.dirs.config }}/rofi/solarized_alternate.rasi"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    dest: "{{ user.dirs.home}}/{{ user.dirs.config }}/rofi/solarized_alternate.rasi"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   tags:
     - runner
     - config
@@ -58,11 +58,11 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: 41-rofi
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/41-rofi"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/41-rofi"
   notify:
     - compile hotkeys
   tags:

@@ -29,11 +29,11 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd"
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d"
   tags:
     - hotkey
     - config
@@ -45,12 +45,12 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: 0755
   with_items:
     - src: 00-base
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/00-base"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/00-base"
   notify:
     - compile hotkeys
   tags:
@@ -64,12 +64,12 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: 0755
   with_items:
     - src: 40-sxhkd.conf
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/40-sxhkd.conf"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/lxqt/session.conf.d/40-sxhkd.conf"
   notify:
     - compile session
   tags:
@@ -88,11 +88,11 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: sxhkd.desktop
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/autostart/sxhkd.desktop"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/sxhkd.desktop"
   tags:
     - hotkey
     - autostart

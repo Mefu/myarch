@@ -1,46 +1,148 @@
 ---
-ma_user:
-  name: "ma_user"
+user:
+  name: ma_user
   password: ""
-  commands: []
+  sudo_commands: []
   dirs:
-    home: "/home/"
+    home: /home/
     # configuration files
-    config: ".config"
+    config: .config
     # local binaries
-    bin: ".local/bin"
+    bin: .local/bin
     # local libraries
-    lib: ".local/lib"
+    lib: .local/lib
     # local shared files
-    share: ".local/share"
+    share: .local/share
     # .Desktop entries
-    desktop: "Desktop"
+    desktop: Desktop
     # downloaded files
-    download: "Download"
+    download: Download
     # I have no idea but it is in xdg spec
-    template: "Templates"
+    template: Templates
     # files that is shared
-    public: "Public"
+    public: Public
     # documents
-    document: "Documents"
+    document: Documents
     # music
-    music: "Music"
+    music: Music
     # pictures => only includes personal photos
-    picture: "Pictures"
+    picture: Pictures
     # video => only includes personal videos
-    video: "Videos"
+    video: Videos
     # images
-    image: "Images"
+    image: Images
     # screenshots
-    screenshot: "Images/Screenshots"
+    screenshot: Images/Screenshots
     # wallpapers
-    wallpaper: "Images/Wallpapers"
+    wallpaper: Images/Wallpapers
     # workspace for programming
-    workspace: "Workspace"
+    workspace: Workspace
 
-ma_aur_user:
+aur_user:
   name: ma_aur
 
-ma_shell:
+bar:
+  height: 27
+  fonts:
+    - family: Noto Sans Mono
+      size: 10
+    - family: Noto Sans CJK JP
+      size: 10
+    - family: Font Awesome 5 Free
+      style: Regular
+      size: 10
+    - family: Font Awesome 5 Free
+      style: Solid
+      size: 10
+    - family: Font Awesome 5 Brands
+      style: Regular
+      size: 10
+
+shell:
   fish:
     packages: []
+
+terminal:
+  font:
+    family: Inconsolata
+    size: 14
+
+theme:
+  qt:
+    theme: kvantum
+    icon-theme: Papirus-Adapta-Nokto
+    kvantum:
+      theme: AdaptaNokto
+  gtk:
+    theme: Adapta-Nokto
+    icon-theme: Papirus-Adapta-Nokto
+  font:
+    family: Noto Sans
+    size: 11
+
+hotkey:
+  audio:
+    raise: XF86AudioRaiseVolume
+    lower: XF86AudioLowerVolume
+    mute: XF86AudioMute
+  backlight:
+    up: XF86MonBrightnessUp
+    down: XF86MonBrightnessDown
+  bar:
+    reload: super + alt + b
+  hotkey_daemon:
+    reload: super + alt + r
+  runner:
+    run: super + d
+    switch: super + Tab
+  terminal:
+    fish: super + Enter
+    bash: super + shift + Return
+  wm:
+    window:
+      close: super + shift + w
+      kill: super + shift + q
+      focus:
+        desktop1: super + 1
+        desktop2: super + 2
+        desktop3: super + 3
+        desktop4: super + 4
+        desktop5: super + 5
+        desktop6: super + 6
+        desktop7: super + 7
+        desktop8: super + 8
+        desktop9: super + 9
+        desktop10: super + 0
+        west: super + Left
+        south: super + Down
+        north: super + Up
+        east: super + Right
+      move:
+        west: super + shift + Left
+        south: super + shift + Down
+        north: super + shift + Up
+        east: super + shift + Right
+        desktop1: super + ctrl + 1
+        desktop2: super + ctrl + 2
+        desktop3: super + ctrl + 3
+        desktop4: super + ctrl + 4
+        desktop5: super + ctrl + 5
+        desktop6: super + ctrl + 6
+        desktop7: super + ctrl + 7
+        desktop8: super + ctrl + 8
+        desktop9: super + ctrl + 9
+        desktop10: super + ctrl + 0
+      rotate:
+        plus90: super + control + Up
+        minus90: super + control + Down
+      state:
+        fullscreen:
+          toggle: super + f
+        tiled:
+          toggle: super + t
+        floating:
+          toggle: super + g
+    desktop:
+      monitor:
+        left: super + control + Left
+        right: super + control + Right

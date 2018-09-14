@@ -35,10 +35,10 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
-    - "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources"
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources"
   tags:
     - xserver
     - config
@@ -51,19 +51,19 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ ma_user.name }}"
-    owner: "{{ ma_user.name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
   with_items:
     - src: .xsessionrc
-      dest: "{{ ma_user.dirs.home }}/.xsessionrc"
+      dest: "{{ user.dirs.home }}/.xsessionrc"
 
     # for customizing these stuff, just modify files
     # it is too much boilerplate to handle with ansible vars
     # @TODO try to pull themeing stuff to its own role somehow
     - src: xresources/00-Defaults
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/00-Defaults"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/00-Defaults"
     - src: xresources/10-Colors
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/xresources/10-Colors"
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/10-Colors"
   notify:
     - compile xresources
   tags:
