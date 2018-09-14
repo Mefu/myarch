@@ -55,6 +55,7 @@
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/VBoxClient.desktop"
     - src: SwapAltWin.desktop
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/SwapAltWin.desktop"
+  when: "ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'virtualbox'"
   tags:
     - hotkey
     - autostart

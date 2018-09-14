@@ -61,6 +61,7 @@
     - "{{ user.dirs.home }}/{{ user.dirs.screenshots }}"
     - "{{ user.dirs.home }}/{{ user.dirs.wallpapers }}"
     - "{{ user.dirs.home }}/{{ user.dirs.workspace }}"
+    - "{{ user.dirs.home }}/{{ user.dirs.share }}/applications"
   tags:
     - user
     - directory
