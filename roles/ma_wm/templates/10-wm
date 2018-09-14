@@ -16,6 +16,14 @@ super + {Left,Down,Up,Right}
 super + shift + {Left,Down,Up,Right}
   bspc node -s {west,south,north,east}
 
+# rotate currently selected node
+super + control + {Up,Down}
+  bspc node @/ -R {90,-90}
+
+# send current desktop to another monitor and focus
+super + control + {Left,Right}
+  bspc desktop -m {west,east} -f
+
 # preselect the direction to split
 super + {h,j,k,l,c}
   bspc node -p {west,south,north,east,cancel}
@@ -41,8 +49,4 @@ super + {1-9,0}
 # send to the given desktop
 super + control + {1-9,0}
   bspc node -d '^{1-9,10}'
-
-# send current desktop to another monitor and focus
-super + control + {Left,Right}
-  bspc desktop -m {west,east} -f
 

@@ -6,13 +6,13 @@
 ####################################################################################################
 - name: Install required packages for rofi.
   become: yes
-  become_user: root
+  become_user: "{{ ma_aur_user.name }}"
   become_method: sudo
-  pacman:
+  aur:
     name: "{{ item }}"
-    state: latest
+    skip_installed: yes
   with_items:
-    - rofi
+    - rofi-git
   tags:
     - runner
     - package
@@ -64,7 +64,7 @@
     - src: 41-rofi
       dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/sxhkd/sxhkdrc.d/41-rofi"
   notify:
-    - compile xresources
+    - compile hotkeys
   tags:
-    - terminal
+    - runner
     - config

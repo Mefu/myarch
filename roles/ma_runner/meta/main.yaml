@@ -1,3 +1,4 @@
 ---
 dependencies:
+  - role: ma_aur_helper
   - role: ma_hotkey

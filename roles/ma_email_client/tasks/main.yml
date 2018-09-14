@@ -4,7 +4,7 @@
 # Installation
 #
 ################################################################################################
-- name: Install required packages for firefox.
+- name: Install required packages for thunderbird.
   become: yes
   become_user: root
   become_method: sudo
@@ -12,9 +12,9 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - firefox
+    - thunderbird
   tags:
-    - browser
+    - email_client
     - package
 
 
@@ -33,9 +33,9 @@
     group: "{{ ma_user.name }}"
     owner: "{{ ma_user.name }}"
   with_items:
-    - src: firefox.desktop
-      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.share }}/applications/firefox.desktop"
+    - src: thunderbird.desktop
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.share }}/applications/thunderbird.desktop"
   tags:
-    - browser
+    - email_client
     - config
     - desktop

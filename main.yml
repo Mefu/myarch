@@ -22,6 +22,7 @@
     - ma_hotkey
     - ma_session
     - ma_backlight
+    - ma_theme
     - ma_bar
     - ma_notification
     - ma_runner
@@ -34,8 +35,9 @@
     - ma_file_manager
     - ma_text_editor
     - ma_browser
-    - ma_theme
+    - ma_email_client
     - ma_vbox_guest
+    - ma_dev_nodejs
   tasks:
     - name: Update all pacman packages.
       become: yes

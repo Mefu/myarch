@@ -1,0 +1,43 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for nodejs development.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - nodejs
+    - yarn
+  tags:
+    - dev-nodejs
+    - package
+
+####################################################################################################
+#
+# Configuration
+#
+####################################################################################################
+- name: Copy yarn global bin config file.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ ma_user.name }}"
+    owner: "{{ ma_user.name }}"
+    mode: 0755
+  with_items:
+    - src: 90-yarn-global-bin.conf
+      dest: "{{ ma_user.dirs.home }}/{{ ma_user.dirs.config }}/lxqt/session.conf.d/90-yarn-global-bin.conf"
+  notify:
+    - compile session
+  tags:
+    - dev-nodejs
+    - config
