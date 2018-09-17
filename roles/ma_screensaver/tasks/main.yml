@@ -1,0 +1,63 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for xscreensaver.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - xscreensaver
+  tags:
+    - screensaver
+    - package
+
+####################################################################################################
+#
+# Configuration
+#
+####################################################################################################
+- name: Copy config files for xscreensaver.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: 60-xscreensaver
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/60-xscreensaver"
+  notify:
+    - compile xresources
+  tags:
+    - screensaver
+    - config
+
+####################################################################################################
+#
+# Autostart
+#
+####################################################################################################
+- name: Copy desktop file for screensaver daemon.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: xscreensaver.desktop
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/xscreensaver.desktop"
+  tags:
+    - screensaver
+    - autostart
+
