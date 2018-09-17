@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=UDiskie
+TryExec=udiskie
+Exec=udiskie --no-automount --no-notify --tray

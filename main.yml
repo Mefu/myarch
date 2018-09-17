@@ -20,6 +20,7 @@
     - ma_wm
     - ma_de
     - ma_hotkey
+    - ma_automount
     - ma_session
     - ma_backlight
     - ma_theme
