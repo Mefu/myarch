@@ -8,31 +8,29 @@
 ;=====================================================
 
 [colors]
-background = #222
-background-alt = #444
-foreground = #dfdfdf
-foreground-alt = #55
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+background = {{ colors.black.dark|colorf(fromf='rgba_hex', tof='rgb_hex') }}
+background-alt = {{ colors.black.light|colorf(fromf='rgba_hex', tof='rgb_hex') }}
+foreground = {{ colors.white.light|colorf(fromf='rgba_hex', tof='rgb_hex') }}
+foreground-alt = {{ colors.white.dark|colorf(fromf='rgba_hex', tof='rgb_hex') }}
+primary = {{ colors.orange.dark|colorf(fromf='rgba_hex', tof='rgb_hex') }}
+secondary = {{ colors.blue.dark|colorf(fromf='rgba_hex', tof='rgb_hex') }}
+alert = {{ colors.red.dark|colorf(fromf='rgba_hex', tof='rgb_hex') }}
 
 [global/wm]
 margin-top = 5
 margin-bottom = 5
 
 [settings]
-screenchange-reload = false
+screenchange-reload = true
 
 [bar/top]
 enable-ipc = true
 
-;monitor = ${env:MONITOR:HDMI-1}
 width = 100%:-16
 height = 27
 offset-x = 8
 offset-y = 0
 
-;background = ${xrdb:color9}
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -102,11 +100,11 @@ label = 
 
 bar-width = 10
 bar-indicator = █
-bar-indicator-foreground = #ff
+bar-indicator-foreground = ${colors.foreground}
 bar-indicator-font = 2
 bar-fill = █
 bar-fill-font = 2
-bar-fill-foreground = #9f78e1
+bar-fill-foreground = ${colors.primary}
 bar-empty = ▂
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
@@ -126,10 +124,10 @@ bar-volume-width = 10
 bar-volume-gradient = false
 bar-volume-indicator = █
 bar-volume-indicator-font = 2
-bar-volume-indicator-foreground = #ff
+bar-volume-indicator-foreground = ${colors.foreground}
 bar-volume-fill = █
 bar-volume-fill-font = 2
-bar-volume-fill-foreground = #55aa55
+bar-volume-fill-foreground = ${colors.secondary}
 bar-volume-empty = ▂
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}

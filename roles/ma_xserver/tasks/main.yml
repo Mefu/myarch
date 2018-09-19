@@ -44,7 +44,7 @@
     - config
     - directory
 
-- name: Copy required config files for xorg.
+- name: Copy xsession file for xorg.
   become: yes
   become_user: root
   become_method: sudo
@@ -56,13 +56,23 @@
   with_items:
     - src: .xsessionrc
       dest: "{{ user.dirs.home }}/.xsessionrc"
+  tags:
+    - xserver
+    - config
 
-    # for customizing these stuff, just modify files
-    # it is too much boilerplate to handle with ansible vars
-    # @TODO try to pull themeing stuff to its own role somehow
-    - src: xresources/00-Defaults
+- name: Copy required xresources files for xorg.
+  become: yes
+  become_user: root
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: xresources/00-Defaults.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/00-Defaults"
-    - src: xresources/10-Colors
+    - src: xresources/10-Colors.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/10-Colors"
   notify:
     - compile xresources

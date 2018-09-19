@@ -60,13 +60,13 @@
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: config
+    - src: config.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/polybar/config"
   tags:
     - bar
@@ -76,13 +76,13 @@
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: 42-polybar
+    - src: 42-polybar.hotkey.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/42-polybar"
   tags:
     - bar

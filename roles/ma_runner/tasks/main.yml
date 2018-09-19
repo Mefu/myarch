@@ -38,15 +38,18 @@
     - config
     - directory
 
-- name: Download theme for rofi.
+- name: Copy theme for rofi.
   become: yes
   become_user: root
   become_method: sudo
-  get_url:
-    url: https://raw.githubusercontent.com/DaveDavenport/rofi-themes/master/Official%20Themes/solarized_alternate.rasi
-    dest: "{{ user.dirs.home}}/{{ user.dirs.config }}/rofi/solarized_alternate.rasi"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
+  with_items:
+    - src: custom.rasi.j2
+      dest: "{{ user.dirs.home}}/{{ user.dirs.config }}/rofi/custom.rasi"
   tags:
     - runner
     - config
@@ -55,13 +58,13 @@
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: 41-rofi
+    - src: 41-rofi.hotkey.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/41-rofi"
   notify:
     - compile hotkeys

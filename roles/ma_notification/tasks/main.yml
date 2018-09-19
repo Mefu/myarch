@@ -23,6 +23,35 @@
 # Configuration
 #
 ################################################################################################
+- name: Create config directory of dunst.
+  become: yes
+  become_user: root
+  become_method: sudo
+  file:
+    path: "{{ item }}"
+    state: directory
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/dunst"
+  tags:
+    - notification
+    - config
+    - directory
 
-# I do not even know how much I can customize dunst, it appears to be getting its colors from
-# Xresources default file. If you know, do your stuff here.
+# Modify file directly if you want to customize dunst
+- name: Copy dunst config file.
+  become: yes
+  become_user: root
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: dunstrc.j2
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/dunst/dunstrc"
+  tags:
+    - notification
+    - config

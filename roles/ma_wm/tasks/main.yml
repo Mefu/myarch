@@ -64,7 +64,6 @@
     dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
-    mode: 0755
   with_items:
     - src: 10-wm
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/10-wm"

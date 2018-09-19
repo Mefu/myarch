@@ -146,3 +146,46 @@ hotkey:
       monitor:
         left: super + control + Left
         right: super + control + Right
+
+# try to apply this wherever possible
+# rgba hex format
+colors:
+  black:
+    light: '#37474FFF'
+    dark: '#263238FF'
+  white:
+    light: '#ECEFF1FF'
+    dark: '#576975FF'
+  red:
+    light: '#FF5370FF'
+    dark: '#E53935FF'
+  pink:
+    light: '#F07178FF'
+    dark: '#FF5370FF'
+  orange:
+    light: '#F78C6CFF'
+    dark: '#F76D47FF'
+  yellow:
+    light: '#FFCB6BFF'
+    dark: '#FFB62CFF'
+  green:
+    light: '#C3E88DFF'
+    dark: '#91B859FF'
+  pale_blue:
+    light: '#B2CCD6FF'
+    dark: '#8796B0FF'
+  cyan:
+    light: '#89DDFFFF'
+    dark: '#39ADB5FF'
+  blue:
+    light: '#82AAFFFF'
+    dark: '#6182B8FF'
+  purple:
+    light: '#C792EAFF'
+    dark: '#7C4DFFFF'
+  violet:
+    light: '#BB80B3FF'
+    dark: '#945EB8FF'
+  brown:
+    light: '#AB7967FF'
+    dark: '#AB7967FF'

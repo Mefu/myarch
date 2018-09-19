@@ -1,10 +1,10 @@
 ---
 ################################################################################################
 #
-# Installation of rxvt-unicode
+# Installation of alacritty
 #
 ################################################################################################
-- name: Install required packages for urxvt.
+- name: Install required packages for alacritty.
   become: yes
   become_user: root
   become_method: sudo
@@ -12,54 +12,84 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - rxvt-unicode
+    - xterm
+    - alacritty
+    - alacritty-terminfo
   tags:
     - terminal
     - package
 
-
 ################################################################################################
 #
-# Configuration of rxvt xterm and guake
+# Configuration of alacritty
 #
 ################################################################################################
-
-# xterm and urxvt configs are copied to xresources folder to be compiled into
-# one Xresources file. Check md_xserver/handlers/main.yml.
-- name: Copy config files for urxvt.
+- name: Copy xresources file for xterm.
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: 40-XTerm
+    - src: 40-XTerm.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/40-XTerm"
-    - src: 50-URxvt
-      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/50-URxvt"
   notify:
     - compile xresources
   tags:
     - terminal
     - config
 
-- name: Copy hotkey file for urxvt.
+- name: Create config directory of alacritty.
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  file:
+    path: "{{ item }}"
+    state: directory
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - "{{ user.dirs.home }}/{{ user.dirs.config }}/alacritty"
+  tags:
+    - terminal
+    - config
+    - directory
+
+- name: Copy alacritty config file.
+  become: yes
+  become_user: root
+  become_method: sudo
+  template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: 40-urxvt
-      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/40-urxvt"
+    - src: alacritty.yml.j2
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/alacritty/alacritty.yml"
+  tags:
+    - terminal
+    - config
+
+- name: Copy hotkey file for alacritty and xterm.
+  become: yes
+  become_user: root
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: 30-xterm.hotkey.j2
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/30-xterm"
+    - src: 40-alacritty.hotkey.j2
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/40-alacritty"
   notify:
-    - compile xresources
+    - compile hotkeys
   tags:
     - terminal
     - config
