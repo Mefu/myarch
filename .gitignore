@@ -16,3 +16,6 @@ inventory
 # ignore host_vars except example
 host_vars/*
 !host_vars/example
+
+**/__pycache__
+*.pyc
