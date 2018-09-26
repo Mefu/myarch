@@ -13,6 +13,17 @@
     dest: "{{ user.dirs.home }}/.Xresources"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
+  notify:
+    - reload xresources
+  tags:
+    - xserver
+    - config
+
+- name: reload xresources
+  become: yes
+  become_user: "{{ user.name }}"
+  become_method: sudo
+  shell: "xrdb -load {{ user.dirs.home }}/.Xresources"
   tags:
     - xserver
     - config

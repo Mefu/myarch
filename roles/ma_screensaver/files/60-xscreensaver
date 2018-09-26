@@ -1,4 +1,5 @@
 xscreensaver.splash: false
+xscreensaver.mode: blank
 
 !font settings
 xscreensaver.Dialog.headingFont:        -*-inconsolata-bold-r-*-*-12-*-*-*-*-*-*-*
