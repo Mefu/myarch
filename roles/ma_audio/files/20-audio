@@ -1,12 +1,12 @@
 # Raise volume
 XF86AudioRaiseVolume
-  pactl set-sink-volume 0 +10%
+  pamixer --increase 10
 
 # Lower volume
 XF86AudioLowerVolume
-  pactl set-sink-volume 0 -10%
+  pamixer --decrease 10
 
 # Mute audio
 XF86AudioMute
-  pactl set-sink-mute 0 toggle
+  pamixer --toggle-mute
 
