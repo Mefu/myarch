@@ -36,6 +36,22 @@
     - shell
     - config
 
+- name: Copy fish function files.
+  become: yes
+  become_user: root
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: ssh.fish
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/fish/functions/ssh.fish"
+  tags:
+    - shell
+    - config
+
 # this is straight pulling stuff from web without verification
 # @TODO: find a better way for this
 - name: add fundle for fish plugin management
