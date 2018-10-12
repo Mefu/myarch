@@ -7,7 +7,3 @@ systemctl --user import-environment DISPLAY XAUTHORITY PATH XDG_RUNTIME_DIR
 if which dbus-update-activation-environment >/dev/null 2>&1; then
   dbus-update-activation-environment DISPLAY XAUTHORITY PATH XDG_RUNTIME_DIR
 fi
-
-# start autocutsel that syncs clipboards
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &

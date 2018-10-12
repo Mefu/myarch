@@ -14,7 +14,6 @@
   with_items:
     - xorg-server
     - xorg-apps
-    - autocutsel
   tags:
     - xserver
     - package
@@ -79,3 +78,21 @@
   tags:
     - xserver
     - config
+
+- name: Copy xserver hotkey file.
+  become: yes
+  become_user: root
+  become_method: sudo
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: 43-xrdb.hotkey.j2
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/43-xrdb"
+  notify:
+    - compile hotkeys
+  tags:
+    - xserver
+    - hotkey

@@ -1,0 +1,8 @@
+# reload polybar
+super + v
+  exec bash -c "env CM_LAUNCHER=rofi clipmenu -font 'Noto Sans 14' -theme custom"
+
+# restart clipmenud
+super + shift + v
+  pkill clipmenud && clipmenud
+

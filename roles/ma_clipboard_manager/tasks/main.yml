@@ -4,37 +4,44 @@
 # Installation
 #
 ####################################################################################################
-- name: Install required packages for enlighten.
+- name: Install dependency packages for polybar.
   become: yes
-  become_user: "{{ aur_user.name }}"
+  become_user: root
   become_method: sudo
-  aur:
+  pacman:
     name: "{{ item }}"
-    skip_installed: yes
+    state: latest
   with_items:
-    - enlighten-git
+    - clipmenu
+    - clipnotify
   tags:
-    - backlight
+    - clipboard_manager
     - package
 
 ####################################################################################################
 #
-# Configuration of enlighten
+# Configuration of polybar
 #
 ####################################################################################################
-- name: Add user to video group
+- name: Copy clipmenu hotkey file.
   become: yes
   become_user: root
   become_method: sudo
-  user:
-    name: "{{ user.name }}"
-    append: yes
-    groups: video
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: 44-clipmenu.hotkey.j2
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/44-clipmenu"
+  notify:
+    - compile hotkeys
   tags:
-    - backlight
-    - config
+    - clipboard_manager
+    - hotkey
 
-- name: Copy backlight hotkey file.
+- name: Copy clipmenud autostart file.
   become: yes
   become_user: root
   become_method: sudo
@@ -44,10 +51,8 @@
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: 21-backlight
-      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/21-backlight"
-  notify:
-    - compile hotkeys
+    - src: clipmenud.desktop
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/clipmenud.desktop"
   tags:
-    - backlight
-    - hotkey
+    - clipboard_manager
+    - service

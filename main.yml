@@ -28,6 +28,7 @@
     - ma_bar
     - ma_notification
     - ma_runner
+    - ma_clipboard_manager
     # - ma_screenlock
     # - ma_audio_ui
     # - ma_network_ui

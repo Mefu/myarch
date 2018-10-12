@@ -23,7 +23,7 @@
   become: yes
   become_user: "{{ user.name }}"
   become_method: sudo
-  shell: "xrdb -load {{ user.dirs.home }}/.Xresources"
+  shell: "[[ -f {{ user.dirs.home }}/.Xresources ]] && xrdb -merge {{ user.dirs.home }}/.Xresources"
   tags:
     - xserver
     - config

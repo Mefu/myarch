@@ -65,7 +65,7 @@
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: 10-wm
+    - src: 10-wm.hotkeys.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/10-wm"
   notify:
     - compile hotkeys

@@ -84,6 +84,8 @@
   with_items:
     - src: 42-polybar.hotkey.j2
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/42-polybar"
+  notify:
+    - compile hotkeys
   tags:
     - bar
     - hotkey

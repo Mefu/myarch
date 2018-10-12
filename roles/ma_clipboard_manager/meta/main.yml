@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role: ma_hotkey
+  - role: ma_runner
