@@ -9,11 +9,10 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      # it is also installed in ma_de role
+      - lxqt-session
     state: latest
-  with_items:
-    # it is also installed in ma_de role
-    - lxqt-session
   tags:
     - session
     - package

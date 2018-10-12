@@ -9,16 +9,15 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - lxqt-config
+      - lxqt-policykit
+      - lxqt-qtplugin
+      - lxqt-session
+      - lxqt-sudo
+      # here because it manages desktop
+      - pcmanfm-qt
     state: latest
-  with_items:
-    - lxqt-config
-    - lxqt-policykit
-    - lxqt-qtplugin
-    - lxqt-session
-    - lxqt-sudo
-    # here because it manages desktop
-    - pcmanfm-qt
   tags:
     - de
     - package

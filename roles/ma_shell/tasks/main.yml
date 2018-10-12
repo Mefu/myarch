@@ -9,10 +9,9 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - fish
     state: latest
-  with_items:
-    - fish
   tags:
     - font
     - package

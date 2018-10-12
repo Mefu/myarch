@@ -9,11 +9,10 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - nodejs
+      - yarn
     state: latest
-  with_items:
-    - nodejs
-    - yarn
   tags:
     - dev-nodejs
     - package

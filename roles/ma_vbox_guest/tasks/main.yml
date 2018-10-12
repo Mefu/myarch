@@ -9,11 +9,10 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - virtualbox-guest-modules-arch
+      - virtualbox-guest-utils
     state: latest
-  with_items:
-    - virtualbox-guest-modules-arch
-    - virtualbox-guest-utils
   when: "ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'virtualbox'"
   tags:
     - vbox_guest

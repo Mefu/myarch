@@ -9,12 +9,11 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - pulseaudio
+      - pulseaudio-alsa
+      - pamixer
     state: latest
-  with_items:
-    - pulseaudio
-    - pulseaudio-alsa
-    - pamixer
   tags:
     - audio
     - package

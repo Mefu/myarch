@@ -9,13 +9,12 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      # github module support
+      - curl
+      # network module support
+      - libnl
     state: latest
-  with_items:
-    # github module support
-    - curl
-    # network module support
-    - libnl
   tags:
     - bar
     - package

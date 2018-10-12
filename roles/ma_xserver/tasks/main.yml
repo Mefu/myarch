@@ -9,11 +9,10 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - xorg-server
+      - xorg-apps
     state: latest
-  with_items:
-    - xorg-server
-    - xorg-apps
   tags:
     - xserver
     - package

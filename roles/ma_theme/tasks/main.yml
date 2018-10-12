@@ -9,17 +9,18 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      # gtk theme
+      - adapta-gtk-theme
+      # qt5 theme engines
+      - kvantum-qt5
+      # matching qt5 style
+      - kvantum-theme-adapta
+      # papirus icon theme
+      - papirus-icon-theme
+      # gtk2 theme engine
+      - gtk-engine-murrine
     state: latest
-  with_items:
-    # gtk theme
-    - adapta-gtk-theme
-    # qt5 theme engines
-    - kvantum-qt5
-    # matching qt5 style
-    - kvantum-theme-adapta
-    # papirus icon theme
-    - papirus-icon-theme
   tags:
     - theme
     - package

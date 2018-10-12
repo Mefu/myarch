@@ -9,11 +9,10 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - clipmenu
+      - clipnotify
     state: latest
-  with_items:
-    - clipmenu
-    - clipnotify
   tags:
     - clipboard_manager
     - package

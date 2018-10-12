@@ -9,12 +9,11 @@
   become_user: root
   become_method: sudo
   pacman:
-    name: "{{ item }}"
+    name:
+      - xterm
+      - alacritty
+      - alacritty-terminfo
     state: latest
-  with_items:
-    - xterm
-    - alacritty
-    - alacritty-terminfo
   tags:
     - terminal
     - package
