@@ -4,3 +4,8 @@ user:
   dirs:
     home: /home/
     config: .config
+
+terminal:
+  font:
+    family: Inconsolata
+    size: 11

@@ -22,15 +22,15 @@ draw_bold_text_with_bright_colors: true
 
 font:
   normal:
-    family: Inconsolata
+    family: {{ terminal.font.family }}
     style: Regular
   bold:
-    family: Inconsolata
+    family: {{ terminal.font.family }}
     style: Bold
   italic:
-    family: Inconsolata
+    family: {{ terminal.font.family }}
     style: Italic
-  size: 11.0
+  size: {{ terminal.font.size }}
   offset:
     x: 0
     y: 0

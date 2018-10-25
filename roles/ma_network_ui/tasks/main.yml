@@ -1,0 +1,39 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for cmst.
+  become: yes
+  become_user: "{{ aur_user.name }}"
+  become_method: sudo
+  aur:
+    name: "{{ item }}"
+    skip_installed: yes
+  with_items:
+    - cmst
+  tags:
+    - network_ui
+    - package
+
+####################################################################################################
+#
+# Autostart
+#
+####################################################################################################
+- name: Copy desktop file for autostart.
+  become: yes
+  become_user: root
+  become_method: sudo
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+  with_items:
+    - src: cmst.desktop
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/cmst.desktop"
+  tags:
+    - network_ui
+    - autostart

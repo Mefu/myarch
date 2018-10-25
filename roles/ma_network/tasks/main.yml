@@ -1,0 +1,34 @@
+---
+####################################################################################################
+#
+# Installation
+#
+####################################################################################################
+- name: Install required packages for connman.
+  become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name:
+      - connman
+      - wpa_supplicant
+    state: latest
+  tags:
+    - network
+    - package
+
+####################################################################################################
+#
+# Enable connman
+#
+####################################################################################################
+- name: Enable connman.
+  become: yes
+  become_user: root
+  become_method: sudo
+  systemd:
+    name: connman
+    enabled: yes
+  tags:
+    - network
+    - service
