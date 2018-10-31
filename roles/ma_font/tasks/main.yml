@@ -13,7 +13,7 @@
       # to use in terminal
       - ttf-inconsolata
       # to use in text editor
-      - ttf-hack
+      - ttf-fira-code
       # to have a font family that has most of the unicode
       - noto-fonts
       - noto-fonts-cjk
