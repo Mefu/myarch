@@ -4,13 +4,13 @@
 # Installation
 #
 ####################################################################################################
-- name: Install required packages for xscreensaver.
+- name: Install required packages for i3lock.
   become: yes
   become_user: root
   become_method: sudo
   pacman:
     name:
-      - xscreensaver
+      - i3lock
     state: latest
   tags:
     - screensaver
@@ -18,45 +18,23 @@
 
 ####################################################################################################
 #
-# Configuration
+# Hotkey
 #
 ####################################################################################################
-- name: Copy config files for xscreensaver.
+- name: Copy i3lock hotkey file.
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
-    - src: 60-xscreensaver
-      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/xresources/60-xscreensaver"
+    - src: 45-i3lock.hotkey.j2
+      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/sxhkd/sxhkdrc.d/45-i3lock"
   notify:
-    - compile xresources
+    - compile hotkeys
   tags:
     - screensaver
-    - config
-
-####################################################################################################
-#
-# Autostart
-#
-####################################################################################################
-- name: Copy desktop file for screensaver daemon.
-  become: yes
-  become_user: root
-  become_method: sudo
-  copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    group: "{{ user.name }}"
-    owner: "{{ user.name }}"
-  with_items:
-    - src: xscreensaver.desktop
-      dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/xscreensaver.desktop"
-  tags:
-    - screensaver
-    - autostart
-
+    - hotkey

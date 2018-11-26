@@ -1,0 +1,6 @@
+---
+user:
+  name: ma_user
+  dirs:
+    home: /home/
+    config: .config

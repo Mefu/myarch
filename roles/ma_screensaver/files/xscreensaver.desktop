@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=XScreenSaver
-TryExec=xscreensaver
-Exec=xscreensaver -no-splash
