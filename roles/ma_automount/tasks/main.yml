@@ -13,6 +13,7 @@
       - udisks2
       - udiskie
     state: latest
+  when: "not (ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'virtualbox')"
   tags:
     - automount
     - package
@@ -34,6 +35,7 @@
   with_items:
     - src: udiskie.desktop
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/autostart/udiskie.desktop"
+  when: "not (ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'virtualbox')"
   tags:
     - automount
     - autostart
