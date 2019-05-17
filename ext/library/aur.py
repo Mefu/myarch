@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Taken from https://raw.githubusercontent.com/kewlfft/ansible-aur/master/aur.py
+
 
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import open_url
@@ -34,7 +36,7 @@ options:
         description:
             - The helper to use, 'auto' uses the first known helper found and makepkg as a fallback.
         default: auto
-        choices: [ auto, aurman, pacaur, trizen, pikaur, yay, makepkg ]
+        choices: [ auto, yay, aurman, pacaur, trizen, pikaur, makepkg ]
 
     skip_installed:
         description:
@@ -49,6 +51,10 @@ options:
               Only valid with makepkg.
         type: bool
         default: no
+
+    aur_only:
+        description:
+            - Limit operation to the AUR. Compatible with yay, aurman, pacaur and trizen.
 notes:
   - When used with a `loop:` each package will be processed individually,
     it is much more efficient to pass the list directly to the `name` option.
@@ -72,14 +78,15 @@ EXAMPLES = '''
 def_lang = ['env', 'LC_ALL=C']
 
 use_cmd = {
-    'aurman': ['aurman', '-S', '--noconfirm', '--noedit', '--needed'],
-    'yay': ['yay', '-S', '--noconfirm', '--needed'],
+    'yay': ['yay', '-S', '--noconfirm', '--needed', '--cleanafter'],
+    'aurman': ['aurman', '-S', '--noconfirm', '--noedit', '--needed', '--skip_news', '--pgp_fetch', '--skip_new_locations'],
     'pacaur': ['pacaur', '-S', '--noconfirm', '--noedit', '--needed'],
     'trizen': ['trizen', '-S', '--noconfirm', '--noedit', '--needed'],
     'pikaur': ['pikaur', '-S', '--noconfirm', '--noedit', '--needed'],
     'makepkg': ['makepkg', '--syncdeps', '--install', '--noconfirm', '--needed']
 }
-# optional: aurman, pacaur, trizen have a --aur option, do things only for aur
+
+has_aur_option = ['yay', 'aurman', 'pacaur', 'trizen']
 
 
 def package_installed(module, package):
@@ -103,13 +110,13 @@ def check_packages(module, packages):
 
     if would_be_changed:
         status = True
-        if (len(packages) > 1):
-            message = '%s package(s) would be installed' % str(len(would_be_changed))
+        if len(packages) > 1:
+            message = '{} package(s) would be installed'.format(len(would_be_changed))
         else:
             message = 'package would be installed'
     else:
         status = False
-        if (len(packages) > 1):
+        if len(packages) > 1:
             message = 'all packages are already installed'
         else:
             message = 'package is already installed'
@@ -120,10 +127,11 @@ def install_with_makepkg(module, package):
     """
     Install the specified package with makepkg
     """
+    module.get_bin_path('fakeroot', required=True)
     f = open_url('https://aur.archlinux.org/rpc/?v=5&type=info&arg={}'.format(package))
     result = json.loads(f.read().decode('utf8'))
     if result['resultcount'] != 1:
-        return (1, '', 'package not found')
+        return (1, '', 'package {} not found'.format(package))
     result = result['results'][0]
     f = open_url('https://aur.archlinux.org/{}'.format(result['URLPath']))
     current_path = os.getcwd()
@@ -143,13 +151,13 @@ def install_with_makepkg(module, package):
     return (rc, out, err)
 
 
-def upgrade(module, use):
+def upgrade(module, use, aur_only):
     """
     Upgrade the whole system
     """
     assert use in use_cmd
 
-    rc, out, err = module.run_command(def_lang + use_cmd[use] + ['-u'], check_rc=True)
+    rc, out, err = module.run_command(def_lang + use_cmd[use] + ['--aur' if (aur_only and use in has_aur_option) else None] + ['-u'], check_rc=True)
 
     module.exit_json(
         changed=not (out == '' or 'nothing to do' in out or 'No AUR updates found' in out),
@@ -158,7 +166,7 @@ def upgrade(module, use):
     )
 
 
-def install_packages(module, packages, use, skip_installed):
+def install_packages(module, packages, use, skip_installed, aur_only):
     """
     Install the specified packages
     """
@@ -174,14 +182,11 @@ def install_packages(module, packages, use, skip_installed):
         if use == 'makepkg':
             rc, out, err = install_with_makepkg(module, package)
         else:
-            rc, out, err = module.run_command(def_lang + use_cmd[use] + [package], check_rc=True)
+            rc, out, err = module.run_command(def_lang + use_cmd[use] + ['--aur' if (aur_only and use in has_aur_option) else None] + [package], check_rc=True)
 
         changed_iter = changed_iter or not (out == '' or '-- skipping' in out or 'nothing to do' in out)
 
-    if changed_iter:
-        message = 'installed package(s)'
-    else:
-        message = 'package(s) already installed'
+    message = 'installed package(s)' if changed_iter else 'package(s) already installed'
 
     module.exit_json(
         changed=changed_iter,
@@ -203,13 +208,17 @@ def main():
             },
             'use': {
                 'default': 'auto',
-                'choices': ['auto', 'aurman', 'pacaur', 'trizen', 'pikaur', 'yaourt', 'yay', 'makepkg'],
+                'choices': ['auto'] + list(use_cmd.keys()),
             },
             'skip_installed': {
                 'default': False,
                 'type': 'bool',
             },
             'skip_pgp_check': {
+                'default': False,
+                'type': 'bool',
+            },
+            'aur_only': {
                 'default': False,
                 'type': 'bool',
             },
@@ -227,7 +236,7 @@ def main():
         use = 'makepkg'
         # auto: select the first helper for which the bin is found
         for k in use_cmd:
-            if module.get_bin_path(k, False):
+            if module.get_bin_path(k):
                 use = k
                 break
     else:
@@ -237,9 +246,9 @@ def main():
         module.fail_json(msg="Upgrade cannot be used with this option.")
     else:
         if params['upgrade']:
-            upgrade(module, use)
+            upgrade(module, use, params['aur_only'])
         else:
-            install_packages(module, params['name'], use, params['skip_installed'])
+            install_packages(module, params['name'], use, params['skip_installed'], params['aur_only'])
 
 
 if __name__ == '__main__':
