@@ -6,7 +6,7 @@ fundle plugin "{{ package }}"
 
 fundle init
 
-# source .profile file using bass
-if test -e ~/.profile; and type -q bass
-  bass source ~/.profile
+# source .bashrc file using bass
+if test -e ~/.bashrc; and type -q bass
+  bass source ~/.bashrc
 end

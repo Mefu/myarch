@@ -1,0 +1,2 @@
+{{ user.name }} ALL=(ALL) {{ user.sudo_commands.passwd|join(',') }}
+{{ user.name }} ALL=(ALL) NOPASSWD: {{ user.sudo_commands.nopasswd|join(',') }}

@@ -36,7 +36,7 @@
     - shell
     - config
 
-- name: Copy fish function files.
+- name: Copy bashrc and fish function files.
   become: yes
   become_user: root
   become_method: sudo
@@ -46,6 +46,8 @@
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
+    - src: .bashrc.j2
+      dest: "{{ user.dirs.home }}/.bashrc"
     - src: ssh.fish
       dest: "{{ user.dirs.home }}/{{ user.dirs.config }}/fish/functions/ssh.fish"
   tags:

@@ -1,0 +1,12 @@
+#
+# ~/.bashrc
+#
+
+# commands to run whether or not bash is running interactively
+export PATH="${PATH}:{{ user.dirs.home }}/{{ user.dirs.bin }}"
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$

@@ -25,9 +25,9 @@
   become: yes
   become_user: root
   become_method: sudo
-  copy:
+  template:
     # can only use shutdown and reboot
-    content: "{{ user.name }} ALL=(root) NOPASSWD: {{ user.sudo_commands|join(',') }}\n"
+    src: user.sudoers.j2
     dest: "/etc/sudoers.d/{{ user.name }}"
   tags:
     - user
