@@ -9,4 +9,4 @@ export PATH="${PATH}:{{ user.dirs.home }}/{{ user.dirs.bin }}"
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$
+export PS1="[\u@\h] [\t] [\w] \\$ "
