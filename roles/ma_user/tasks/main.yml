@@ -45,6 +45,7 @@
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
   with_items:
+    - "{{ user.dirs.home }}" # home folder should already exist, but this ensures its owners are correct
     - "{{ user.dirs.home }}/{{ user.dirs.config }}"
     - "{{ user.dirs.home }}/{{ user.dirs.bin }}"
     - "{{ user.dirs.home }}/{{ user.dirs.lib }}"
