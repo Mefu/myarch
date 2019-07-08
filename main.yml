@@ -39,7 +39,7 @@
     - ma_browser
     - ma_email_client
     - ma_vbox_guest
-    - ma_dev_nodejs
+    # - ma_dev_nodejs
   tasks:
     - name: Update all pacman packages.
       become: yes
