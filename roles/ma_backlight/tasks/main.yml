@@ -6,6 +6,19 @@
 ####################################################################################################
 - name: Install required packages for enlighten.
   become: yes
+  become_user: root
+  become_method: sudo
+  pacman:
+    name:
+      # enlighten-git does not specify this as a build dependency even though it is
+      - ptyhon-sphinx
+    state: latest
+  tags:
+    - backlight
+    - package
+
+- name: Install required packages for enlighten.
+  become: yes
   become_user: "{{ aur_user.name }}"
   become_method: sudo
   aur:
