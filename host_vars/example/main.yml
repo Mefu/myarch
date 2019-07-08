@@ -2,7 +2,9 @@
 user:
   name: ma_user
   password: ""
-  sudo_commands: []
+  sudo_commands:
+    passwd: []
+    nopasswd: []
   dirs:
     home: /home/
     # configuration files
@@ -18,23 +20,23 @@ user:
     # downloaded files
     download: Download
     # I have no idea but it is in xdg spec
-    template: Templates
+    templates: Templates
     # files that is shared
     public: Public
     # documents
-    document: Documents
+    documents: Documents
     # music
     music: Music
     # pictures => only includes personal photos
-    picture: Pictures
-    # video => only includes personal videos
-    video: Videos
+    pictures: Pictures
+    # videos => only includes personal videos
+    videos: Videos
     # images
-    image: Images
+    images: Images
     # screenshots
-    screenshot: Images/Screenshots
+    screenshots: Images/Screenshots
     # wallpapers
-    wallpaper: Images/Wallpapers
+    wallpapers: Images/Wallpapers
     # workspace for programming
     workspace: Workspace
 
