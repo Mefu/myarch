@@ -11,7 +11,7 @@
   pacman:
     name:
       # enlighten-git does not specify this as a build dependency even though it is
-      - ptyhon-sphinx
+      - python-sphinx
     state: latest
   tags:
     - backlight
