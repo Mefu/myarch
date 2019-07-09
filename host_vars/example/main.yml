@@ -6,7 +6,7 @@ user:
     passwd: []
     nopasswd: []
   dirs:
-    home: /home/
+    home: /home/ma_user
     # configuration files
     config: .config
     # local binaries
